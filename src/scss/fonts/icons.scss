@@ -1,0 +1,62 @@
+@font-face {
+	font-family: "icons";
+	src: url("../fonts/icons.tff") format(truetype);
+	font-display: normal;
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="_icon-"],
+[class*=" _icon-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: "icons" !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+._icon-checked:before {
+	content: "\e902";
+}
+._icon-close:before {
+	content: "\e903";
+}
+._icon-download:before {
+	content: "\e904";
+}
+._icon-instagram:before {
+	content: "\e905";
+}
+._icon-locker:before {
+	content: "\e906";
+}
+._icon-phone:before {
+	content: "\e907";
+}
+._icon-telegram-rounded:before {
+	content: "\e908";
+}
+._icon-telegram:before {
+	content: "\e909";
+}
+._icon-vk:before {
+	content: "\e90a";
+}
+._icon-whatsapp:before {
+	content: "\e90b";
+}
+._icon-location:before {
+	content: "\e900";
+}
+._icon-location-header:before {
+	content: "\e901";
+}
+._icon-arrow-right:before {
+	content: "\ea3c";
+}

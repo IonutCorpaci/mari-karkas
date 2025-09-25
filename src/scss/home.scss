@@ -1,0 +1,403 @@
+//=================================== Main ===================================
+.main {
+    background: url("../img/main/main-bg.png") center center / cover no-repeat;
+    padding-top: 100px;
+    padding-bottom: 150px;
+    display: none;
+
+    @media (min-width: $mobile) {
+        display: block;
+    }
+
+    @media (min-width: $tablet) {
+        padding-bottom: 200px;
+        padding-top: 200px;
+    }
+    color: #fff;
+    // .main__container
+
+    &__container {
+    }
+
+    // .main__title
+
+    &__title {
+        font-size: 76px;
+        font-weight: 500;
+
+        @media (min-width: $mobile) {
+            font-size: 50px;
+        }
+        @media (min-width: $tablet) {
+            font-size: 60px;
+        }
+
+        @media (min-width: $pc) {
+            font-size: 76px;
+        }
+    }
+
+    // .main__info
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        p {
+            max-width: 250px;
+        }
+    }
+
+    // .main__info-item
+
+    &__info-item {
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @media (min-width: $mobile) {
+            width: 250px;
+        }
+
+        @media (min-width: $tablet) {
+            width: 300px;
+        }
+
+        @media (min-width: $pc) {
+            width: 400px;
+        }
+    }
+
+    // .main__btn
+
+    &__btn {
+        color: #fff;
+        background-color: #ffa500;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-top: 40px;
+        position: relative;
+        img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        @media (min-width: $mobile) {
+            padding: 10px 40px;
+            font-size: 25px;
+        }
+
+        @media (min-width: $pc) {
+            padding: 20px 50px;
+            font-size: 30px;
+
+            img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    }
+}
+
+//=================================== Main Mobile ===================================
+.main-mob {
+    display: block;
+    @media (min-width: $mobile) {
+        display: none;
+    }
+
+    // .main-mob__video
+
+    &__video {
+        z-index: 2;
+        position: relative;
+    }
+
+    // .main-mob__container
+
+    &__container {
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    // .main-mob__title
+
+    &__title {
+        font-size: 20px;
+        text-transform: uppercase;
+        color: #404040;
+        text-align: center;
+    }
+
+    // .main-mob__location
+
+    &__location {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        margin-top: 20px;
+    }
+
+    // .main-mob__location-item
+
+    &__location-item {
+        color: #404040;
+        font-size: 12px;
+        background-color: rgb(236 236 236);
+        padding: 5px 10px;
+        border-radius: 20px;
+
+        display: flex;
+        align-items: center;
+        gap: 7px;
+
+        ._icon-location {
+            font-size: 15px;
+        }
+    }
+
+    // .main-mob__btns
+
+    &__btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 20px;
+
+        @media (min-width: $mobileSmall) {
+            flex-direction: row;
+            align-items: baseline;
+        }
+    }
+
+    &__btns-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    // .main-mob__call-me
+
+    &__call-me {
+        background-color: #61c361;
+        border-radius: 30px;
+        width: fit-content;
+        height: fit-content;
+        font-weight: 500;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 40px;
+    }
+
+    // .main-mob__credit
+
+    &__credit {
+        background-color: orange;
+        border-radius: 30px;
+        width: fit-content;
+        height: fit-content;
+        font-weight: 500;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 40px;
+        position: relative;
+
+        img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+    }
+
+    // .main-mob__credit-image
+
+    &__credit-image {
+        width: 200px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    // .main-mob__house
+
+    &__house {
+        margin-top: -60vh;
+        width: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @media (min-width: $mobileSmall) {
+            margin-top: -80vh;
+        }
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        // z-index: 0;
+        // width: 100vw;
+    }
+
+    &__catalog {
+        width: 80%;
+        padding: 0 10px;
+        border-radius: 20px;
+        background-color: #61c361;
+        font-size: 15px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        color: black;
+        display: block;
+        margin: 0 auto 10px auto;
+        padding: 15px;
+
+        @media (min-width: $mobileSmall) {
+            font-size: 20px;
+        }
+    }
+}
+
+//=================================== Reels ===================================
+.reels {
+    margin-top: clamp(10px, 7vw, 100px);
+    color: #404040;
+    // .reels__container
+
+    &__container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    // .reels__title
+
+    &__title {
+        font-size: 27px;
+        font-weight: 700;
+        text-align: center;
+
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    // .reels__items
+
+    &__items {
+        display: flex;
+        gap: 10px;
+    }
+
+    // .reels__item
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &__sw-item {
+        display: block;
+        img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        @media (min-width: $mobile) {
+            display: none;
+        }
+    }
+
+    // .reels__image
+
+    &__image {
+        width: 68px;
+        height: 68px;
+        border: 2px solid #404040;
+        border-radius: 50%;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+    }
+
+    // .reels__name
+
+    &__name {
+        font-weight: 700;
+        text-align: center;
+        font-size: 13px;
+    }
+}
+
+//=================================== Our Team ===================================
+.our-team {
+    // .our-team__container
+
+    &__container {
+    }
+
+    // .our-team__title
+
+    &__title {
+    }
+
+    // .our-team__info
+
+    &__info {
+    }
+
+    // .our-team__employees
+
+    &__employees {
+    }
+}
+.employees-team {
+    // .employees-team__employee
+
+    &__employee {
+    }
+
+    // .employees-team__image
+
+    &__image {
+    }
+
+    // .employees-team__name
+
+    &__name {
+    }
+
+    // .employees-team__job
+
+    &__job {
+    }
+}
+
+//=================================== ===================================
+//=================================== ===================================
+//=================================== ===================================
+
+//=================================== ===================================

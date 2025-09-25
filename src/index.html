@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('html/_head.htm',{
+"title":"HomePage"
+})
+
+<body>
+	<div class="wrapper">
+		@@include('html/_header.htm',{})
+		<main class="page">
+			<div class="main">
+				<div class="main__container">
+					<h1 class="main__title">Строим каркасные дома <br> и бани за 30 дней <br> с гарантией</h1>
+					<div class="main__info">
+						<div class="main__info-item"><img src="img/main/main-text-img.svg" alt="text"></div>
+						<p>Мы создаём каркасники в Йошкар-Оле качественно, стильно и «под ключ»!</p>
+					</div>
+					<button class="main__btn">В ипотеку <img src="img/main/cursor.png" alt="cursor"></button>
+				</div>
+			</div>
+			<div class="main-mob">
+				<video autoplay="" muted="" loop="" playsinline="" class="main-mob__video">
+					<source src="img/marikarkasvideo.webm" type="video/webm">
+				</video>
+
+				<div class="main-mob__container">
+					<h2 class="main-mob__title">Строим каркасные дома и бани за 30 дней с гарантией</h2>
+					<div class="main-mob__location">
+						<div class="main-mob__location-item">
+							<span class="_icon-location"></span>Марий Эл
+						</div>
+						<div class="main-mob__location-item">
+							<span class="_icon-location"></span>Чувашия
+						</div>
+						<div class="main-mob__location-item">
+							<span class="_icon-location"></span>Татарстан
+						</div>
+					</div>
+					<div class="main-mob__btns">
+						<button class="main-mob__call-me">Позвоните мне</button>
+						<div class="main-mob__btns-item">
+							<button class="main-mob__credit">Хочу в ипотеку<img src="img/main/cursor.png" alt="cursor"></button>
+							<div class="main-mob__credit-image">
+								<img src="img/main/stroke-phone.png" alt="credit">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="main-mob__house">
+						<img src="img/main/house-bg.jpg" alt="house">
+				</div>
+				<button class="main-mob__catalog">&gt;&gt;&gt; Посмотреть каталог &lt;&lt;&lt;</button>
+			</div>
+			<div class="reels">
+				<div class="reels__container">
+					<h2 class="reels__title">Истории и рилсы <span class="reels__sw-item"><img src="img/reels/reels-swipe.gif" alt=""></span></h2>
+					<div class="reels__items">
+						<div class="reels__item">
+							<div class="reels__image">
+								<img src="img/reels/reel-1.png" alt="reel">
+							</div>
+							<div class="reels__name">Классика</div>
+						</div>
+						<div class="reels__item">
+							<div class="reels__image">
+								<img src="img/reels/reel-2.png" alt="reel">
+							</div>
+							<div class="reels__name">А-фрейм</div>
+						</div>
+						<div class="reels__item">
+							<div class="reels__image">
+								<img src="img/reels/reel-3.png" alt="reel">
+							</div>
+							<div class="reels__name">Барнхаус</div>
+						</div>
+						<div class="reels__item">
+							<div class="reels__image">
+								<img src="img/reels/reel-4.png" alt="reel">
+							</div>
+							<div class="reels__name">Баня</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="our-team">
+				<div class="our-team__container">
+					<div class="our-team__title">Наша команда</div>
+					<div class="our-team__info">
+						В нашей команде высококвалифицированные специалисты, которые помогут ирасскажут о строительстве домов всё
+					</div>
+					<div class="our-team__employees employees-team">
+						<div class="employees-team__employee">
+							<div class="employees-team__image">
+								<img src="img/our-team/andrey-ivanov.png" alt="Андрей Иванов - Контент и продвижение">
+							</div>
+							<div class="employees-team__name">Андрей Иванов</div>
+							<div class="employees-team__job">Отдел маркетинга</div>
+						</div>
+						<div class="employees-team__employee">
+							<div class="employees-team__image">
+								<img src="img/our-team/iulia-mikytova.png" alt="Юлия Микутова - менеджер MariKarkas">
+							</div>
+							<div class="employees-team__name">Юлия Микутова</div>
+							<div class="employees-team__job">Менеджер</div>
+						</div>
+						<div class="employees-team__employee">
+							<div class="employees-team__image">
+								<img src="img/our-team/mihail-kydryashov.png" alt="Михаил Кудряшов - Отдел Снабжение">
+							</div>
+							<div class="employees-team__name">Михаил Кудряшов</div>
+							<div class="employees-team__job">Отдел Снабжения</div>
+						</div>
+						<div class="employees-team__employee">
+							<div class="employees-team__image">
+								<img src="img/our-team/maxim-ivanov.png" alt="Максим Иванов - Прораб">
+							</div>
+							<div class="employees-team__name">Максим Иванов</div>
+							<div class="employees-team__job">Прораб</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		@@include('html/_footer.htm',{})
+	</div>
+	@@include('html/_js.htm',{})
+</body>
+
+</html>
