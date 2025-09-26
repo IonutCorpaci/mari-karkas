@@ -1,3 +1,209 @@
-//====================================================================================================
+.footer {
+    margin-top: clamp(20px, 6vw, 100px);
+    padding-bottom: 20px;
+    background-color: #fcfafa;
+    // .footer__container
 
-//====================================================================================================
+    &__container {
+    }
+
+    // .footer__top
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        @media (min-width: $tablet) {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    // .footer__top-item
+
+    &__top-item {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    // .footer__logo
+
+    &__logo {
+        width: 207px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @media (min-width: $mobile) {
+            width: 227px;
+        }
+
+        @media (min-width: $tablet) {
+            width: 307px;
+        }
+    }
+
+    // .footer__vk
+
+    &__vk {
+        color: #fff;
+        background-color: #3b5999;
+        border: 1px solid #3b5999;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+
+        ._icon-vk {
+            font-size: 20px;
+        }
+
+        &:hover {
+            color: #3b5999;
+            background-color: #fff;
+        }
+    }
+
+    // .footer__btns
+
+    &__btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        @media (min-width: $mobileSmall) {
+            gap: 10px;
+            flex-direction: row;
+        }
+
+        @media (min-width: $mobile) {
+            gap: 20px;
+        }
+    }
+
+    // .footer__whatsapp
+
+    &__whatsapp {
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        background-color: #61c361;
+        border: 1px solid #61c361;
+        border-radius: 20px;
+        padding: 5px 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.3s;
+        width: 240px;
+
+        ._icon-whatsapp {
+            font-size: 25px;
+        }
+
+        &:hover {
+            background-color: #fff;
+            color: #61c361;
+        }
+    }
+
+    // .footer__request
+
+    &__request {
+        font-size: 14px;
+        font-weight: 500;
+        color: #3b5999;
+        background-color: transparet;
+        border: 1px solid #3b5999;
+        border-radius: 20px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: 0.3s;
+        line-height: 100%;
+        width: 240px;
+
+        ._icon-phone {
+            font-size: 16px;
+        }
+
+        &:hover {
+            background-color: #3b5999;
+            color: #fff;
+        }
+    }
+
+    // .footer__bottom
+
+    &__bottom {
+        margin-top: 20px;
+        font-size: 17px;
+    }
+
+    // .footer__work-hours
+
+    &__work-hours {
+        span {
+            font-weight: 600;
+        }
+    }
+
+    // .footer__phone
+
+    &__phone {
+        color: #3b5999;
+        font-weight: 700;
+        span {
+            color: black;
+            font-weight: 600;
+        }
+    }
+
+    // .footer__info
+
+    &__info {
+        span {
+            font-weight: 600;
+        }
+    }
+
+    &__subtitle {
+        position: relative;
+        width: fit-content;
+        z-index: 3;
+        display: block;
+        margin: 0 auto;
+        font-size: 19px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 17%;
+            transform: translateX(-50%);
+            height: 8px;
+            width: 110%;
+            background-color: #ffcf72;
+            z-index: -1;
+        }
+    }
+}
+
+.info-footer {
+}

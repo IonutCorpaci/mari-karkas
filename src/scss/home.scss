@@ -5,7 +5,7 @@
     padding-bottom: 150px;
     display: none;
 
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
         display: block;
     }
 
@@ -108,7 +108,7 @@
 //=================================== Main Mobile ===================================
 .main-mob {
     display: block;
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
         display: none;
     }
 
@@ -142,7 +142,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 3px;
+
+        @media (min-width: $mobileSmall) {
+            gap: 10px;
+        }
 
         margin-top: 20px;
     }
@@ -238,7 +242,7 @@
     // .main-mob__house
 
     &__house {
-        margin-top: -60vh;
+        margin-top: -40vh;
         width: 100%;
         img {
             width: 100%;
@@ -246,8 +250,12 @@
             object-fit: contain;
         }
 
+        @media (min-width: 350px) {
+            margin-top: -55vh;
+        }
+
         @media (min-width: $mobileSmall) {
-            margin-top: -80vh;
+            margin-top: -75vh;
         }
         // position: absolute;
         // top: 0;
@@ -352,8 +360,18 @@
     }
 }
 
+@keyframes teamBackrAnimation {
+    from {
+        background-position: -300px 0; /* стартовое положение */
+    }
+    to {
+        background-position: 10px 0; /* конечное положение */
+    }
+}
 //=================================== Our Team ===================================
 .our-team {
+    padding-top: 100px;
+    color: #404040;
     // .our-team__container
 
     &__container {
@@ -362,41 +380,155 @@
     // .our-team__title
 
     &__title {
+        font-size: clamp(23px, 4vw, 37px);
+        font-weight: 700;
+        text-align: center;
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+        z-index: 3;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 17%;
+            transform: translateX(-50%);
+            height: 10px;
+            width: 105%;
+            background-color: #feea8c;
+            z-index: -1;
+        }
     }
 
     // .our-team__info
 
     &__info {
+        padding-top: 15px;
+        text-align: center;
+        font-size: 17px;
+        max-width: 600px;
+        margin: 0 auto;
+
+        @media (min-width: $mobile) {
+            font-size: 20px;
+        }
     }
 
     // .our-team__employees
 
     &__employees {
+        margin-top: clamp(20px, 4vw, 50px);
     }
 }
 .employees-team {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, minmax(0, 280px));
+    gap: 30px;
+
+    @media (min-width: $tablet) {
+        grid-template-columns: repeat(4, minmax(0, 280px));
+    }
     // .employees-team__employee
 
     &__employee {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     // .employees-team__image
 
     &__image {
+        background:
+            url("../img/our-team/team-clouds.png") center center / cover no-repeat,
+            #e0e5e7;
+        border-radius: 5px;
+        max-width: 280px;
+        transition: 0.3s;
+        background-position: -300px 0;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        &:hover {
+            background-color: #3b5999;
+            animation: teamBackrAnimation 10s linear infinite alternate;
+        }
     }
 
     // .employees-team__name
 
     &__name {
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        position: relative;
+        width: fit-content;
+        z-index: 3;
+        white-space: nowrap;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 17%;
+            transform: translateX(-50%);
+            height: 8px;
+            width: 105%;
+            background-color: #ffcf72;
+            z-index: -1;
+        }
+
+        @media (min-width: $mobileSmall) {
+            font-size: 18px;
+        }
     }
 
     // .employees-team__job
 
     &__job {
+        margin-top: 5px;
+        text-align: center;
+        font-size: 13px;
+        @media (min-width: $mobileSmall) {
+            font-size: 15px;
+        }
     }
 }
 
-//=================================== ===================================
+//=================================== Porftolio ==================================
+.portfolio {
+    margin-top: clamp(20px, 6vw, 100px);
+    // .portfolio__container
+
+    &__container {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(2, minmax(0, 320px));
+        gap: 20px;
+
+        @media (min-width: $mobile) {
+            grid-template-columns: repeat(3, minmax(0, 380px));
+        }
+    }
+
+    // .portfolio__item
+
+    &__item {
+        img {
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
 //=================================== ===================================
 //=================================== ===================================
 
