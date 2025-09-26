@@ -926,6 +926,7 @@ video {
 .main-mob__catalog {
   width: 80%;
   border-radius: 20px;
+  color: #fff;
   background-color: #61c361;
   font-size: 15px;
   box-shadow: 0 3px 6px rgba(0,0,0,.3);
