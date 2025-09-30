@@ -1,4 +1,4 @@
-<div id="popup" aria-hidden="true" class="popup">
+<div id="call-us-popup" aria-hidden="true" class="popup form-popup">
 	<div class="popup__wrapper">
 		<div class="popup__content">
 			<button data-close type="button" class="popup__close">
@@ -7,8 +7,17 @@
 					<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
 				</svg>
 			</button>
-			<div class="popup__text">
-				Popup content
+			<div class="form-popup__body">
+				<form action="" class="form-popup__form" id="popup-phone-form">
+					<input 
+						type="tel" 
+						id="popupFormPhone" 
+						placeholder="+7 (___) ___-__-__" 
+						class="form-quiz__phone"
+					>
+					<button class="form-popup__form-btn" type="submit">Оставить заявку</button>
+					<div class="form-popup__form-text">Нажимая на кнопку «Оставить заявку», вы соглашаетесь <span>с условиями политики обработки персональных данных</span></div>
+				</form>
 			</div>
 		</div>
 	</div>

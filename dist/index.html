@@ -9,7 +9,7 @@
 	<!-- Ускорение загрузки шрифтов -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&_v=20250926172835" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&_v=20250930162947" rel="stylesheet">
 	<!-- Дефолтные стили -->
 	<style>
 		[class*=__container] {
@@ -61,7 +61,7 @@
 	<style>
 	</style>
 
-	<link rel="preload" href="css/style.min.css?_v=20250926172835" as="style" onload="this.rel='stylesheet'">
+	<link rel="preload" href="css/style.min.css?_v=20250930162947" as="style" onload="this.rel='stylesheet'">
 
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,9 +117,16 @@
 				</div>
 			</div>
 			<div class="main-mob">
-				<video autoplay="" muted="" loop="" playsinline="" class="main-mob__video">
-					<source src="img/marikarkasvideo.webm" type="video/webm">
-				</video>
+				<div class="main-mob__video">
+					<video autoplay="" muted="" loop="" playsinline="">
+						<source src="img/marikarkasvideo.webm" type="video/webm">
+					</video>
+					<div data-gallery>
+						<a class="main-mob__play-btn" data-lg-size="1280-720" data-video='{"source": [{"src":"img/marikarkasvideo.webm", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'>
+							<img src="img/main/play-video-btn.svg" alt="">
+						</a>
+					</div>
+				</div>
 
 				<div class="main-mob__container">
 					<h2 class="main-mob__title">Строим каркасные дома и бани за 30 дней с гарантией</h2>
@@ -135,7 +142,7 @@
 						</div>
 					</div>
 					<div class="main-mob__btns">
-						<button class="main-mob__call-me">Позвоните мне</button>
+						<button class="main-mob__call-me" data-popup="#call-us-popup">Позвоните мне</button>
 						<div class="main-mob__btns-item">
 							<button class="main-mob__credit">Хочу в ипотеку<img src="img/main/cursor.webp" alt="cursor"></button>
 							<div class="main-mob__credit-image">
@@ -154,30 +161,209 @@
 				<div class="reels__container">
 					<h2 class="reels__title">Истории и рилсы</h2>
 					<!-- <h2 class="reels__title">Истории и рилсы <span class="reels__sw-item"><img src="img/reels/reels-swipe.webp" alt=""></span></h2> -->
-					<div class="reels__items">
-						<div class="reels__item">
+					<div class="reels__items" data-gallery>
+						<div class="reels__item" data-lg-size="1080-1920" data-video='{"source": [{"src":"img/reels/reels-1.mp4", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true, "autoplay": true}}'>
 							<div class="reels__image">
-								<img src="img/reels/reel-1.webp" alt="reel">
+								<img src="img/reels/reel-1.webp" alt="Классика">
 							</div>
 							<div class="reels__name">Классика</div>
 						</div>
-						<div class="reels__item">
+						<div class="reels__item" data-lg-size="1080-1920" data-video='{"source": [{"src":"img/reels/reels-2.mp4", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true, "autoplay": true}}'>
 							<div class="reels__image">
-								<img src="img/reels/reel-2.webp" alt="reel">
+								<img src="img/reels/reel-2.webp" alt="А-фрейм">
 							</div>
 							<div class="reels__name">А-фрейм</div>
 						</div>
-						<div class="reels__item">
+						<div class="reels__item" data-lg-size="1080-1920" data-video='{"source": [{"src":"img/reels/reels-3.mp4", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true, "autoplay": true}}'>
 							<div class="reels__image">
-								<img src="img/reels/reel-3.webp" alt="reel">
+								<img src="img/reels/reel-3.webp" alt="Барнхаус">
 							</div>
 							<div class="reels__name">Барнхаус</div>
 						</div>
-						<div class="reels__item">
+						<div class="reels__item" data-lg-size="1080-1920" data-video='{"source": [{"src":"img/reels/reels-4.mp4", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true, "autoplay": true}}'>
 							<div class="reels__image">
-								<img src="img/reels/reel-4.webp" alt="reel">
+								<img src="img/reels/reel-4.webp" alt="Баня">
 							</div>
 							<div class="reels__name">Баня</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="quiz">
+				<div class="quiz__title">Ответьте на 5 вопросов и получите каталог каркасных домов и выберите индивидуальный подарок</div>
+				<div class="quiz__container">
+					<div class="quiz__manager manager-quiz">
+						<div class="manager-quiz__manager">
+							<div class="manager-quiz__image">
+								<img src="img/quiz/quiz-manager.webp" alt="Manager">
+							</div>
+							<div class="manager-quiz__online">Онлайн</div>
+							<div class="manager-quiz__info">
+								<div class="manager-quiz__name">Юлия Микутова</div>
+								<div class="manager-quiz__job">Менеджер</div>
+							</div>
+						</div>
+						<div class="manager-quiz__price-calc">
+							Расчет <br> стоимости <span class="_icon-locker"></span>
+						</div>
+						<div class="manager-quiz__catalog">
+							Каталог <br> проектов <span class="_icon-locker"></span>
+						</div>
+					</div>
+					<div class="quiz__app">
+						<div class="quiz__bar">
+							<div class="quiz__bar-success"></div>
+							<div class="quiz__bar-text">Рачет <span>пройден на 0%</span></div>
+						</div>
+						<div class="quiz__question">Что будем строить?</div>
+						<!-- <div class="quiz__answers-text">
+							<div class="quiz__answer-text answer-text selected-answer">
+								<label class="answer-text__label">
+									<input type="radio" name="Бюджет" value="500 тыс руб - 3 млн руб" class="answer-image__input"></input>
+									<button class="answer-text__text">
+										<span class="_icon-checked"></span> 500 тыс руб - 3 млн руб
+									</button>
+								</label>
+							</div>
+							<div class="quiz__answer-text answer-text">
+								<label class="answer-text__label">
+									<input type="radio" name="Бюджет" value="3  млн руб - 5 млн руб" class="answer-image__input"></input>
+									<button class="answer-text__text">
+										<span class="_icon-checked"></span> 3 млн руб - 5 млн руб
+									</button>
+								</label>
+							</div>
+							<div class="quiz__answer-text answer-text">
+								<label class="answer-text__label">
+									<input type="radio" name="Бюджет" value="5 млн руб - 7 млн руб" class="answer-image__input"></input>
+									<button class="answer-text__text">
+										<span class="_icon-checked"></span> 5 млн руб - 7 млн руб
+									</button>
+								</label>
+							</div>
+							<div class="quiz__answer-text answer-text">
+								<label class="answer-text__label">
+									<input type="radio" name="Бюджет" value="7 млн руб - 9 млн. руб" class="answer-text__input"></input>
+									<button class="answer-text__text">
+										<span class="_icon-checked"></span> 7 млн руб - 9 млн. руб
+									</button>
+								</label>
+							</div>
+							<div class="quiz__answer-text answer-text">
+								<label class="answer-text__label">
+									<input type="radio" name="Бюджет" value="Более 9 млн. руб" class="answer-image__input"></input>
+									<button class="answer-text__text">
+										<span class="_icon-checked"></span> Более 9 млн. руб
+									</button>
+								</label>
+							</div>
+						</div> -->
+						<div class="quiz__answers-image">
+							<div class="quiz__answer-image answer-image selected-answer">
+								<label class="answer-image__label">
+									<input type="radio" name="Тип" value="Барнхаус" class="answer-image__input"></input>
+									<div class="answer-image__item">
+										<div class="answer-image__image">
+											<img src="img/quiz/quiz-1_barnhaus.webp" alt="">
+											<span class="_icon-checked"></span>
+										</div>
+										<div class="answer-image__text">Барнхаус</div>
+									</div>
+								</label>
+							</div>
+							<div class="quiz__answer-image answer-image">
+								<label class="answer-image__label">
+									<input type="radio" name="Тип" value="Барнхаус" class="answer-image__input"></input>
+									<div class="answer-image__item">
+										<div class="answer-image__image">
+											<img src="img/quiz/quiz-1_afreim.webp" alt="">
+											<span class="_icon-checked"></span>
+										</div>
+										<div class="answer-image__text">А-фрейм</div>
+									</div>
+								</label>
+							</div>
+							<div class="quiz__answer-image answer-image">
+								<label class="answer-image__label">
+									<input type="radio" name="Тип" value="Барнхаус" class="answer-image__input"></input>
+									<div class="answer-image__item">
+										<div class="answer-image__image">
+											<img src="img/quiz/quiz-1_classic.webp" alt="">
+											<span class="_icon-checked"></span>
+										</div>
+										<div class="answer-image__text">Классику</div>
+									</div>
+								</label>
+							</div>
+							<div class="quiz__answer-image answer-image">
+								<label class="answer-image__label">
+									<input type="radio" name="Тип" value="Барнхаус" class="answer-image__input"></input>
+									<div class="answer-image__item">
+										<div class="answer-image__image">
+											<img src="img/quiz/quiz-1_bania.webp" alt="">
+											<span class="_icon-checked"></span>
+										</div>
+										<div class="answer-image__text">Баню</div>
+									</div>
+								</label>
+							</div>
+						</div>
+						<div class="quiz__btns">
+							<button class="quiz__prev">
+								<span class="_icon-arrow-right"></span>
+							</button>
+							<button class="quiz__next">Далее <span class="_icon-arrow-right"></span></button>
+						</div>
+					</div>
+					<div class="quiz__form form-quiz">
+						<div class="form-quiz__bar">
+							<div class="form-quiz__bar-success"></div>
+							<div class="form-quiz__bar-text">Рачет <span>пройден на 100%</span></div>
+						</div>
+						<div class="form-quiz__body">
+							<form action="" class="form-quiz__form">
+								<div class="form-quiz__title">
+									Куда удобнее отправить проекты и персональные бонусы?
+								</div>
+								<div class="form-quiz__contacts contacts-form">
+									<label class="contacts-form__tg">
+										<input type="radio" name="Куда" value="telegram" class="contacts-form__inp">
+										<div class="contacts-form__image">
+											<span class="_icon-telegram"></span>
+										</div>
+										<div class="contacts-form__text">Telegram</div>
+									</label>
+									<label class="contacts-form__whatsapp">
+										<input type="radio" name="Куда" value="whatsapp" class="contacts-form__inp">
+										<div class="contacts-form__image">
+											<span class="_icon-whatsapp"></span>
+										</div>
+										<div class="contacts-form__text">WhatsApp</div>
+									</label>
+									<label class="contacts-form__max">
+										<input type="radio" name="Куда" value="max" class="contacts-form__inp">
+										<div class="contacts-form__image">
+											<img src="img/quiz/max.webp" alt="">
+										</div>
+										<div class="contacts-form__text">Max</div>
+									</label>
+								</div>
+
+								<input type="tel" id="quizFormPhone" placeholder="+7 (___) ___-__-__" class="form-quiz__phone">
+								<button type="submit" class="form-quiz__btn">
+									Получить каталог проектов <span>+бонус</span>
+								</button>
+								<div class="form-quiz__agreement">
+									<input type="checkbox" name="agreement" checked="" required="">
+									Ознакомлен с <a href="#">политикой конфиденциальности.</a>
+								</div>
+								<div class="form-quiz__arrow-image">
+									<img src="img/quiz/form-quiz-arrow.webp" alt="arrow">
+								</div>
+							</form>
+							<div class="form-quiz__image">
+								<img src="img/quiz/form-quiz-image.webp" alt="">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -254,7 +440,7 @@
 						<a href="https://api.whatsapp.com/send/?phone=79021247669" rel="nofollow" target="_blank" class="footer__whatsapp">
 							<span class="_icon-whatsapp"></span> Написать в WhatsApp
 						</a>
-						<button class="footer__request">
+						<button class="footer__request" data-popup="#call-us-popup">
 							<span class="_icon-phone"></span> Оставить заявку
 						</button>
 					</div>
@@ -281,7 +467,26 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20250926172835" defer></script>
+	<div id="call-us-popup" aria-hidden="true" class="popup form-popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
+						<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
+					</svg>
+				</button>
+				<div class="form-popup__body">
+					<form action="" class="form-popup__form" id="popup-phone-form">
+						<input type="tel" id="popupFormPhone" placeholder="+7 (___) ___-__-__" class="form-quiz__phone">
+						<button class="form-popup__form-btn" type="submit">Оставить заявку</button>
+						<div class="form-popup__form-text">Нажимая на кнопку «Оставить заявку», вы соглашаетесь <span>с условиями политики обработки персональных данных</span></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20250930162947" defer></script>
 </body>
 
 </html>
