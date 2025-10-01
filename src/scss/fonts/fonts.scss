@@ -1,4 +1,11 @@
 @font-face {
+	font-family: Montserrat;
+	font-display: swap;
+	src: url("../fonts/Montserrat-VariableFont_wght.woff2") format("woff2");
+	font-weight: 300 900;
+	font-style: normal;
+}
+@font-face {
 	font-family: icons;
 	font-display: swap;
 	src: url("../fonts/icons.woff2") format("woff2");

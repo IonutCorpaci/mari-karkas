@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "icons";
 	src: url("../fonts/icons.tff") format(truetype);
-	font-display: normal;
+	font-display: swap;
 	font-weight: normal;
 	font-style: normal;
 }
@@ -59,4 +59,7 @@
 }
 ._icon-arrow-right:before {
 	content: "\ea3c";
+}
+._icon-star-full:before {
+	content: "\e9d9";
 }

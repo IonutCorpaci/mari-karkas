@@ -1388,7 +1388,273 @@
         margin-top: 10px;
     }
 }
+//=================================== House Images Slider ===================================
 
-//=================================== ===================================
+.houses-example {
+    margin-top: clamp(40px, 7vw, 100px);
+    // .houses-example__container
 
-//=================================== ===================================
+    &__container {
+    }
+
+    // .houses-example__title
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #404040;
+
+        @media (min-width: $mobile) {
+            font-size: 37px;
+        }
+    }
+
+    // .houses-example__slider
+
+    &__slider {
+        margin-top: 0px;
+        position: relative;
+        @media (min-width: $mobile) {
+            margin-top: 20px;
+        }
+    }
+
+    // .houses-example__wrapper
+
+    &__wrapper {
+        padding: 10px 0;
+    }
+
+    // .houses-example__slide
+
+    &__slide {
+        // max-width: 340px;
+        display: block;
+        min-height: 450px;
+        position: relative;
+        border-radius: 10px;
+        transition: 0.3s;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        &:hover {
+            box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+        }
+    }
+
+    // .houses-example__image-text
+
+    &__image-text {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+
+        font-size: 24px;
+        color: #fff;
+        font-weight: 800;
+    }
+
+    &__next,
+    &__prev {
+        background-color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        display: flex;
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        @media (min-width: $mobile) {
+            display: flex;
+        }
+    }
+
+    &__next {
+        right: 5px;
+        transform: translateY(-50%);
+        // z-index: 1;
+    }
+
+    &__prev {
+        left: 5px;
+        transform: translateY(-50%) rotate(-180deg);
+        // z-index: 1;
+    }
+}
+
+//=================================== Reviews ===================================
+.reviews {
+    margin-top: clamp(40px, 7vw, 100px);
+    // .reviews__container
+
+    &__container {
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #404040;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        width: fit-content;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 17%;
+            transform: translateX(-50%);
+            height: 10px;
+            width: 105%;
+            background-color: #feea8c;
+            z-index: -1;
+        }
+
+        @media (min-width: $mobile) {
+            font-size: 37px;
+        }
+    }
+
+    // .reviews__slider
+
+    &__slider {
+        position: relative;
+        margin-top: 30px;
+    }
+
+    // .reviews__wrapper
+
+    &__wrapper {
+    }
+
+    // .reviews__slide
+
+    &__slide {
+        border: 1px solid grey;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 340px;
+    }
+
+    // .reviews__top
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    // .reviews__user
+
+    &__user {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__stars {
+        color: #ffa500;
+    }
+
+    // .reviews__user-img
+
+    &__user-img {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3b5999;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: 700;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    // .reviews__user-info
+
+    &__user-info {
+    }
+
+    // .reviews__user-name
+
+    &__user-name {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    // .reviews__date
+
+    &__date {
+        font-weight: 300;
+        font-size: 13px;
+    }
+
+    // .reviews__comment
+
+    &__comment {
+        margin-top: 15px;
+    }
+
+    // .reviews__subtitle
+
+    &__subtitle {
+        font-weight: 600;
+    }
+
+    // .reviews__text
+
+    &__text {
+        margin-top: 5px;
+    }
+
+    // .reviews__prev-btn
+
+    &__prev-btn {
+    }
+
+    // .reviews__next-btn
+
+    &__next-btn {
+    }
+
+    &__next-btn,
+    &__prev-btn {
+        background-color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        display: flex;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+
+        @media (min-width: $mobile) {
+            display: flex;
+        }
+    }
+
+    &__next-btn {
+        right: 5px;
+        transform: translateY(-50%);
+        // z-index: 1;
+    }
+
+    &__prev-btn {
+        left: 5px;
+        transform: translateY(-50%) rotate(-180deg);
+        // z-index: 1;
+    }
+}
