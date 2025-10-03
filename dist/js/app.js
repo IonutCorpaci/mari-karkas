@@ -5490,19 +5490,19 @@ PERFORMANCE OF THIS SOFTWARE.
             type: "image-answ",
             question: "Что будем строить?",
             options: [ {
-                imageUrl: "img/quiz/quiz-1_barnhaus.png",
+                imageUrl: "img/quiz/quiz-1_barnhaus.webp",
                 answer: "Барнхаус",
                 type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-1_afreim.png",
+                imageUrl: "img/quiz/quiz-1_afreim.webp",
                 answer: "А-фрейм",
                 type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-1_classic.png",
+                imageUrl: "img/quiz/quiz-1_classic.webp",
                 answer: "Классику",
                 type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-1_bania.png",
+                imageUrl: "img/quiz/quiz-1_bania.webp",
                 answer: "Баню",
                 type: "radio"
             } ]
@@ -5510,19 +5510,19 @@ PERFORMANCE OF THIS SOFTWARE.
             type: "image-answ",
             question: "Укажите площадь будущего строения",
             options: [ {
-                imageUrl: "img/quiz/quiz-2_50.jpg",
+                imageUrl: "img/quiz/quiz-2_50.webp",
                 answer: "До 50м2",
                 type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-2_100.jpg",
+                imageUrl: "img/quiz/quiz-2_100.webp",
                 answer: "50-100 м2",
                 type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-2_150.jpg",
+                imageUrl: "img/quiz/quiz-2_150.webp",
                 answer: "100-150 м2",
                 type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-2_200.jpg",
+                imageUrl: "img/quiz/quiz-2_200.webp",
                 answer: "Более 150м2",
                 type: "radio"
             } ]
@@ -5530,11 +5530,11 @@ PERFORMANCE OF THIS SOFTWARE.
             type: "image-answ",
             question: "Какие дополнительные опции вам нужны?",
             options: [ {
-                imageUrl: "img/quiz/quiz-3_besedka.jpg",
+                imageUrl: "img/quiz/quiz-3_besedka.webp",
                 answer: "Беседка",
                 type: "checkbox"
             }, {
-                imageUrl: "img/quiz/quiz-3_terrasa.jpeg",
+                imageUrl: "img/quiz/quiz-3_terrasa.webp",
                 answer: "Терраса",
                 type: "checkbox"
             }, {
@@ -5542,7 +5542,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 answer: "Сауна",
                 type: "checkbox"
             }, {
-                imageUrl: "img/quiz/quiz-3_not.png",
+                imageUrl: "img/quiz/quiz-3_not.webp",
                 answer: "Не требуется",
                 type: "checkbox"
             } ]
@@ -5588,21 +5588,21 @@ PERFORMANCE OF THIS SOFTWARE.
             type: "image-answ",
             question: "Выберите подарок, который хотите получить",
             options: [ {
-                imageUrl: "img/quiz/quiz-6_potolki.jpg",
+                imageUrl: "img/quiz/quiz-6_potolki.webp",
                 answer: "Натяжные потолки",
-                type: "checkbox"
+                type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-6_okna.jpg",
+                imageUrl: "img/quiz/quiz-6_okna.webp",
                 answer: "Мягкие окна",
-                type: "checkbox"
+                type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-6_umniidom.png",
+                imageUrl: "img/quiz/quiz-6_umniidom.webp",
                 answer: "Умный дом",
-                type: "checkbox"
+                type: "radio"
             }, {
-                imageUrl: "img/quiz/quiz-6_discount.jpg",
+                imageUrl: "img/quiz/quiz-6_discount.webp",
                 answer: "Скидка 1%",
-                type: "checkbox"
+                type: "radio"
             } ]
         } ];
         const quizApp = document.querySelector(".quiz__app");
@@ -5616,14 +5616,8 @@ PERFORMANCE OF THIS SOFTWARE.
             questionEl.textContent = step.question;
             quizApp.querySelector(".quiz__answers-image")?.remove();
             quizApp.querySelector(".quiz__answers-text")?.remove();
-            let answersWrapper;
-            if (step.type === "image-answ") {
-                answersWrapper = document.createElement("div");
-                answersWrapper.className = "quiz__answers-image";
-            } else {
-                answersWrapper = document.createElement("div");
-                answersWrapper.className = "quiz__answers-text";
-            }
+            const answersWrapper = document.createElement("div");
+            answersWrapper.className = step.type === "image-answ" ? "quiz__answers-image" : "quiz__answers-text";
             step.options?.forEach((opt => {
                 const optionDiv = document.createElement("div");
                 if (step.type === "image-answ") {
@@ -5631,37 +5625,71 @@ PERFORMANCE OF THIS SOFTWARE.
                     optionDiv.innerHTML = `\n        <label class="answer-image__label">\n          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-image__input">\n          <div class="answer-image__item">\n            <div class="answer-image__image">\n              <img src="${opt.imageUrl}" alt="">\n              <span class="_icon-checked"></span>\n            </div>\n            <div class="answer-image__text">${opt.answer}</div>\n          </div>\n        </label>\n      `;
                 } else {
                     optionDiv.className = "quiz__answer-text answer-text";
-                    optionDiv.innerHTML = `\n        <label class="answer-text__label">\n          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-text__input">\n          <button class="answer-text__text"><span class="_icon-checked"></span> ${opt.answer}</button>\n        </label>\n      `;
+                    optionDiv.innerHTML = `\n        <label class="answer-text__label">\n          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-text__input" />\n          <button type="button" class="answer-text__text"><span class="_icon-checked"></span> ${opt.answer}</button>\n        </label>\n      `;
                 }
                 answersWrapper.appendChild(optionDiv);
             }));
             questionEl.after(answersWrapper);
-            nextBtn.disabled = true;
             const inputs = answersWrapper.querySelectorAll("input");
-            inputs.forEach((input => {
-                input.addEventListener("change", (() => {
-                    if (input.type === "radio") {
-                        answers[`q${currentStep}`] = input.value;
-                        inputs.forEach((i => {
-                            const parent = i.closest(".quiz__answer-image, .quiz__answer-text");
-                            if (i.checked) parent.classList.add("selected-answer"); else parent.classList.remove("selected-answer");
+            if (answers[`q${currentStep}`]) if (inputs.length) if (inputs[0].type === "radio") inputs.forEach((i => {
+                if (answers[`q${currentStep}`] === i.value) {
+                    i.checked = true;
+                    i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
+                }
+            })); else if (inputs[0].type === "checkbox") inputs.forEach((i => {
+                if (Array.isArray(answers[`q${currentStep}`]) && answers[`q${currentStep}`].includes(i.value)) {
+                    i.checked = true;
+                    i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
+                }
+            }));
+            if (inputs.length) if (inputs[0].type === "radio") nextBtn.disabled = !Array.from(inputs).some((i => i.checked)); else nextBtn.disabled = !(answers[`q${currentStep}`] && answers[`q${currentStep}`].length > 0); else nextBtn.disabled = true;
+            function updateAfterRadioChange(changedInput) {
+                answers[`q${currentStep}`] = changedInput.value;
+                inputs.forEach((i => {
+                    const parent = i.closest(".quiz__answer-image, .quiz__answer-text");
+                    if (i.checked) parent?.classList.add("selected-answer"); else parent?.classList.remove("selected-answer");
+                }));
+                nextBtn.disabled = !Array.from(inputs).some((i => i.checked));
+            }
+            function updateAfterCheckboxChange(changedInput) {
+                const parent = changedInput.closest(".quiz__answer-image, .quiz__answer-text");
+                if (changedInput.checked) parent?.classList.add("selected-answer"); else parent?.classList.remove("selected-answer");
+                const checkedInputs = Array.from(parent.closest(".quiz__answers-text, .quiz__answers-image").querySelectorAll("input[type=checkbox]:checked"));
+                const values = checkedInputs.map((i => i.value));
+                answers[`q${currentStep}`] = values.join(", ");
+                nextBtn.disabled = values.length === 0;
+            }
+            inputs.forEach((i => {
+                i.addEventListener("change", (() => {
+                    if (i.type === "radio") updateAfterRadioChange(i); else updateAfterCheckboxChange(i);
+                }));
+            }));
+            const optionDivs = answersWrapper.querySelectorAll(".quiz__answer-image, .quiz__answer-text");
+            optionDivs.forEach((div => {
+                const input = div.querySelector("input");
+                div.addEventListener("click", (e => {
+                    if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === "button") e.preventDefault();
+                    if (!input) return;
+                    if (input.type === "radio") if (!input.checked) {
+                        input.checked = true;
+                        input.dispatchEvent(new Event("change", {
+                            bubbles: true
                         }));
-                        nextBtn.disabled = !Array.from(inputs).some((i => i.checked));
-                    } else if (input.type === "checkbox") {
-                        if (!answers[`q${currentStep}`]) answers[`q${currentStep}`] = [];
-                        if (input.checked) answers[`q${currentStep}`].push(input.value); else answers[`q${currentStep}`] = answers[`q${currentStep}`].filter((v => v !== input.value));
-                        const parent = input.closest(".quiz__answer-image, .quiz__answer-text");
-                        if (input.checked) parent.classList.add("selected-answer"); else parent.classList.remove("selected-answer");
-                        nextBtn.disabled = !answers[`q${currentStep}`] || answers[`q${currentStep}`].length === 0;
+                    } else input.checked = true; else if (input.type === "checkbox") {
+                        input.checked = !input.checked;
+                        input.dispatchEvent(new Event("change", {
+                            bubbles: true
+                        }));
                     }
                 }));
             }));
             prevBtn.style.display = currentStep === 0 ? "none" : "inline-flex";
-            nextBtn.textContent = currentStep === quizObj.length - 1 ? "Далее" : "Далее";
+            nextBtn.textContent = "Далее";
         }
         nextBtn.addEventListener("click", (() => {
             if (currentStep < quizObj.length - 1) {
                 currentStep++;
+                console.log(answers);
                 renderStep();
             } else if (currentStep === quizObj.length - 1) {
                 quizApp.style.display = "none";

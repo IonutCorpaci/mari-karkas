@@ -75,22 +75,22 @@ const quizObj = [
     question: "Что будем строить?",
     options: [
       {
-        imageUrl: "img/quiz/quiz-1_barnhaus.png",
+        imageUrl: "img/quiz/quiz-1_barnhaus.webp",
         answer: "Барнхаус",
         type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-1_afreim.png",
+        imageUrl: "img/quiz/quiz-1_afreim.webp",
         answer: "А-фрейм",
         type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-1_classic.png",
+        imageUrl: "img/quiz/quiz-1_classic.webp",
         answer: "Классику",
         type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-1_bania.png",
+        imageUrl: "img/quiz/quiz-1_bania.webp",
         answer: "Баню",
         type: "radio"
       }
@@ -101,22 +101,22 @@ const quizObj = [
     question: "Укажите площадь будущего строения",
     options: [
       {
-        imageUrl: "img/quiz/quiz-2_50.jpg",
+        imageUrl: "img/quiz/quiz-2_50.webp",
         answer: "До 50м2",
         type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-2_100.jpg",
+        imageUrl: "img/quiz/quiz-2_100.webp",
         answer: "50-100 м2",
         type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-2_150.jpg",
+        imageUrl: "img/quiz/quiz-2_150.webp",
         answer: "100-150 м2",
         type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-2_200.jpg",
+        imageUrl: "img/quiz/quiz-2_200.webp",
         answer: "Более 150м2",
         type: "radio"
       }
@@ -127,12 +127,12 @@ const quizObj = [
     question: "Какие дополнительные опции вам нужны?",
     options: [
       {
-        imageUrl: "img/quiz/quiz-3_besedka.jpg",
+        imageUrl: "img/quiz/quiz-3_besedka.webp",
         answer: "Беседка",
         type: "checkbox"
       },
       {
-        imageUrl: "img/quiz/quiz-3_terrasa.jpeg",
+        imageUrl: "img/quiz/quiz-3_terrasa.webp",
         answer: "Терраса",
         type: "checkbox"
       },
@@ -142,7 +142,7 @@ const quizObj = [
         type: "checkbox"
       },
       {
-        imageUrl: "img/quiz/quiz-3_not.png",
+        imageUrl: "img/quiz/quiz-3_not.webp",
         answer: "Не требуется",
         type: "checkbox"
       }
@@ -205,24 +205,24 @@ const quizObj = [
     question: "Выберите подарок, который хотите получить",
     options: [
       {
-        imageUrl: "img/quiz/quiz-6_potolki.jpg",
+        imageUrl: "img/quiz/quiz-6_potolki.webp",
         answer: "Натяжные потолки",
-        type: "checkbox"
+        type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-6_okna.jpg",
+        imageUrl: "img/quiz/quiz-6_okna.webp",
         answer: "Мягкие окна",
-        type: "checkbox"
+        type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-6_umniidom.png",
+        imageUrl: "img/quiz/quiz-6_umniidom.webp",
         answer: "Умный дом",
-        type: "checkbox"
+        type: "radio"
       },
       {
-        imageUrl: "img/quiz/quiz-6_discount.jpg",
+        imageUrl: "img/quiz/quiz-6_discount.webp",
         answer: "Скидка 1%",
-        type: "checkbox"
+        type: "radio"
       }
     ]
   },
@@ -235,7 +235,7 @@ const prevBtn = quizApp.querySelector(".quiz__prev");
 const nextBtn = quizApp.querySelector(".quiz__next");
 
 let currentStep = 0;
-let answers = {};
+let answers = {}; // накопитель ответов
 
 function renderStep() {
   const step = quizObj[currentStep];
@@ -243,25 +243,18 @@ function renderStep() {
   // Вопрос
   questionEl.textContent = step.question;
 
-  // Удаляем старые ответы
+  // Удаляем старые блоки ответов
   quizApp.querySelector(".quiz__answers-image")?.remove();
   quizApp.querySelector(".quiz__answers-text")?.remove();
 
-  // Создаём блок с ответами
-  let answersWrapper;
-  if (step.type === "image-answ") {
-    answersWrapper = document.createElement("div");
-    answersWrapper.className = "quiz__answers-image";
-  } else {
-    answersWrapper = document.createElement("div");
-    answersWrapper.className = "quiz__answers-text";
-  }
+  // Создаём wrapper
+  const answersWrapper = document.createElement("div");
+  answersWrapper.className = step.type === "image-answ" ? "quiz__answers-image" : "quiz__answers-text";
 
   // Генерация вариантов
   step.options?.forEach(opt => {
     const optionDiv = document.createElement("div");
-
-    if(step.type === "image-answ") {
+    if (step.type === "image-answ") {
       optionDiv.className = "quiz__answer-image answer-image";
       optionDiv.innerHTML = `
         <label class="answer-image__label">
@@ -279,8 +272,8 @@ function renderStep() {
       optionDiv.className = "quiz__answer-text answer-text";
       optionDiv.innerHTML = `
         <label class="answer-text__label">
-          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-text__input">
-          <button class="answer-text__text"><span class="_icon-checked"></span> ${opt.answer}</button>
+          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-text__input" />
+          <button type="button" class="answer-text__text"><span class="_icon-checked"></span> ${opt.answer}</button>
         </label>
       `;
     }
@@ -288,72 +281,137 @@ function renderStep() {
     answersWrapper.appendChild(optionDiv);
   });
 
-  // Вставляем сразу после вопроса
+  // Вставляем сразу после вопроса (не в .quiz__btns)
   questionEl.after(answersWrapper);
 
-  // Кнопка Далее пока отключена
-  nextBtn.disabled = true;
-
-  // Слушатели на выбор
+  // Восстанавливаем предыдущий выбор (если есть), и выставляем selected-answer
   const inputs = answersWrapper.querySelectorAll("input");
-  inputs.forEach(input => {
-    input.addEventListener("change", () => {
-      if(input.type === "radio") {
-        answers[`q${currentStep}`] = input.value;
-
-        // selected-answer для радио
+  if (answers[`q${currentStep}`]) {
+    if (inputs.length) {
+      if (inputs[0].type === "radio") {
         inputs.forEach(i => {
-          const parent = i.closest(".quiz__answer-image, .quiz__answer-text");
-          if(i.checked) parent.classList.add("selected-answer");
-          else parent.classList.remove("selected-answer");
+          if (answers[`q${currentStep}`] === i.value) {
+            i.checked = true;
+            i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
+          }
         });
+      } else if (inputs[0].type === "checkbox") {
+        inputs.forEach(i => {
+          if (Array.isArray(answers[`q${currentStep}`]) && answers[`q${currentStep}`].includes(i.value)) {
+            i.checked = true;
+            i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
+          }
+        });
+      }
+    }
+  }
 
-        // Активируем кнопку Далее
-        nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
+  // Установим начальное состояние кнопки Далее (если уже есть выбор)
+  if (inputs.length) {
+    if (inputs[0].type === "radio") {
+      nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
+    } else {
+      nextBtn.disabled = !(answers[`q${currentStep}`] && answers[`q${currentStep}`].length > 0);
+    }
+  } else {
+    nextBtn.disabled = true;
+  }
 
-      } else if(input.type === "checkbox") {
-        if(!answers[`q${currentStep}`]) answers[`q${currentStep}`] = [];
-        if(input.checked) {
-          answers[`q${currentStep}`].push(input.value);
+  // Функции обновления состояния (чтобы переиспользовать)
+  function updateAfterRadioChange(changedInput) {
+    // отмечаем в answers
+    answers[`q${currentStep}`] = changedInput.value;
+
+    // manage classes: оставляем selected только у выбранного
+    inputs.forEach(i => {
+      const parent = i.closest(".quiz__answer-image, .quiz__answer-text");
+      if (i.checked) parent?.classList.add("selected-answer");
+      else parent?.classList.remove("selected-answer");
+    });
+
+    // включаем кнопку если что-то выбрано
+    nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
+  }
+
+function updateAfterCheckboxChange(changedInput) {
+  const parent = changedInput.closest(".quiz__answer-image, .quiz__answer-text");
+
+  // selected-answer
+  if (changedInput.checked) parent?.classList.add("selected-answer");
+  else parent?.classList.remove("selected-answer");
+
+  // Обновляем answers как строку через запятую
+  const checkedInputs = Array.from(parent.closest(".quiz__answers-text, .quiz__answers-image").querySelectorAll("input[type=checkbox]:checked"));
+  const values = checkedInputs.map(i => i.value);
+  answers[`q${currentStep}`] = values.join(", "); // строка через запятую
+
+  // Включаем кнопку Далее если есть хотя бы один checked
+  nextBtn.disabled = values.length === 0;
+}
+
+  // Навесим обработчики:
+  // 1) на сам input (change) — для случаев, когда браузер всё-таки изменил checked
+  inputs.forEach(i => {
+    i.addEventListener("change", () => {
+      if (i.type === "radio") updateAfterRadioChange(i);
+      else updateAfterCheckboxChange(i);
+    });
+  });
+
+  // 2) на контейнер каждого варианта — клики по тексту/картинке/кнопке
+  const optionDivs = answersWrapper.querySelectorAll(".quiz__answer-image, .quiz__answer-text");
+  optionDivs.forEach(div => {
+    const input = div.querySelector("input");
+    div.addEventListener("click", (e) => {
+      // если клик по настоящей ссылке/элементу, всё равно предотвратим дефолт на button внутри label
+      if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === "button") {
+        e.preventDefault();
+      }
+
+      if (!input) return;
+
+      if (input.type === "radio") {
+        // установим checked (браузер снимет checked с других радио в группе автоматически)
+        if (!input.checked) {
+          input.checked = true;
+          // вручную вызовем change, т.к. мы программно изменили checked
+          input.dispatchEvent(new Event("change", { bubbles: true }));
         } else {
-          answers[`q${currentStep}`] = answers[`q${currentStep}`].filter(v => v !== input.value);
+          // если уже выбран — не снимаем (радио не должно сниматься кликом)
+          input.checked = true;
         }
-
-        // selected-answer для чекбоксов
-        const parent = input.closest(".quiz__answer-image, .quiz__answer-text");
-        if(input.checked) parent.classList.add("selected-answer");
-        else parent.classList.remove("selected-answer");
-
-        // Активируем кнопку Далее, если выбран хотя бы один checkbox
-        nextBtn.disabled = !answers[`q${currentStep}`] || answers[`q${currentStep}`].length === 0;
+      } else if (input.type === "checkbox") {
+        // переключаем чек
+        input.checked = !input.checked;
+        input.dispatchEvent(new Event("change", { bubbles: true }));
       }
     });
   });
 
   // Кнопки
   prevBtn.style.display = currentStep === 0 ? "none" : "inline-flex";
-  nextBtn.textContent = currentStep === quizObj.length - 1 ? "Далее" : "Далее";
+  nextBtn.textContent = "Далее";
 }
 
 // Далее
 nextBtn.addEventListener("click", () => {
-  if(currentStep < quizObj.length - 1) {
+  if (currentStep < quizObj.length - 1) {
     currentStep++;
+    console.log(answers);
     renderStep();
-  } else if(currentStep === quizObj.length - 1) {
-    // последний шаг пройден
+  } else if (currentStep === quizObj.length - 1) {
+    // последний шаг пройден — скрываем app/manager и показываем готовую форму
     quizApp.style.display = "none";
     document.querySelector(".quiz__manager").style.display = "none";
 
-    // показываем готовую форму
     const formEl = document.querySelector(".quiz__form.form-quiz");
-    if(formEl) formEl.style.display = "block";
+    if (formEl) formEl.style.display = "block";
   }
 });
 
 // Назад
 prevBtn.addEventListener("click", () => {
-  if(currentStep > 0) {
+  if (currentStep > 0) {
     currentStep--;
     renderStep();
   }
