@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
-	<title>HomePage</title>
+	<title>Каркасные дома в Марий Эл</title>
 	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<meta name="keywords" content="строительство каркасных домов под ключ, недорогой дом, купить проекты домов, построить дом в йошкар-оле, дом под ключ, каркасный дом, купить дом, купить баню, проекты бань купить">
+	<meta name="description" content="Мари Каркас - строительство каркасных домов и бань под ключ в Марий Эл. Йошкар-Ола, ул. Красноармейская Слобода 44А, офис 21. Каркасные дома и бани.">
+	<meta name="HandheldFriendly" content="true">
 
 	<!-- Ускорение загрузки шрифтов -->
 	<!-- <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&_v=20251001173951" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&_v=20251003160322" rel="stylesheet"> -->
 	<!-- Дефолтные стили -->
 	<style>
 		[class*=__container] {
@@ -61,7 +66,7 @@
 	<style>
 	</style>
 
-	<link rel="preload" href="css/style.min.css?_v=20251001173951" as="style" onload="this.rel='stylesheet'">
+	<link rel="preload" href="css/style.min.css?_v=20251003160322" as="style" onload="this.rel='stylesheet'">
 
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,7 +118,7 @@
 						<div class="main__info-item"><img src="img/main/main-text-img.svg" alt="text"></div>
 						<p>Мы создаём каркасники в Йошкар-Оле качественно, стильно и «под ключ»!</p>
 					</div>
-					<button class="main__btn">В ипотеку <img src="img/main/cursor.webp" alt="cursor"></button>
+					<button class="main__btn" data-popup="#credit-popup">В ипотеку <img src="img/main/cursor.webp" alt="cursor"></button>
 				</div>
 			</div>
 			<div class="main-mob">
@@ -122,7 +127,7 @@
 						<source src="img/marikarkasvideo.mp4" type="video/mp4">
 					</video>
 					<div data-gallery>
-						<a class="main-mob__play-btn" data-lg-size="1280-720" data-video='{"source": [{"src":"img/marikarkasvideo.webm", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'>
+						<a class="main-mob__play-btn" data-lg-size="1280-720" data-video='{"source": [{"src":"img/marikarkasvideo.mp4", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'>
 							<img src="img/main/play-video-btn.svg" alt="">
 						</a>
 					</div>
@@ -144,7 +149,7 @@
 					<div class="main-mob__btns">
 						<button class="main-mob__call-me" data-popup="#call-us-popup">Позвоните мне</button>
 						<div class="main-mob__btns-item">
-							<button class="main-mob__credit">Хочу в ипотеку<img src="img/main/cursor.webp" alt="cursor"></button>
+							<button class="main-mob__credit" data-popup="#credit-popup">Хочу в ипотеку<img src="img/main/cursor.webp" alt="cursor"></button>
 							<div class="main-mob__credit-image">
 								<img src="img/main/stroke-phone.webp" alt="credit">
 							</div>
@@ -396,7 +401,7 @@
 									</label>
 								</div>
 
-								<input type="tel" id="quizFormPhone" placeholder="+7 (___) ___-__-__" class="form-quiz__phone">
+								<input type="tel" id="quizFormPhone" placeholder="+7 (___) ___-__-__" class="form-input-item">
 								<button type="submit" class="form-quiz__btn">
 									Получить каталог проектов <span>+бонус</span>
 								</button>
@@ -696,7 +701,7 @@
 	</div>
 	<div id="call-us-popup" aria-hidden="true" class="popup form-popup">
 		<div class="popup__wrapper">
-			<div class="popup__content">
+			<div class="form-popup__content popup__content">
 				<button data-close type="button" class="popup__close">
 					<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
@@ -705,7 +710,7 @@
 				</button>
 				<div class="form-popup__body">
 					<form action="" class="form-popup__form" id="popup-phone-form">
-						<input type="tel" id="popupFormPhone" placeholder="+7 (___) ___-__-__" class="form-quiz__phone">
+						<input type="tel" id="popupFormPhone" placeholder="+7 (___) ___-__-__" class="form-input-item">
 						<button class="form-popup__form-btn" type="submit">Оставить заявку</button>
 						<div class="form-popup__form-text">Нажимая на кнопку «Оставить заявку», вы соглашаетесь <span>с условиями политики обработки персональных данных</span></div>
 					</form>
@@ -713,7 +718,67 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20251001173951" defer></script>
+	<div id="credit-popup" aria-hidden="true" class="popup credit-popup">
+		<div class="popup__wrapper">
+			<div class="credit-popup__content popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
+						<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
+					</svg>
+				</button>
+				<form class="credit-popup__body">
+					<div class="credit-popup__title">Расчёт ипотеки</div>
+					<div class="credit-popup__calculator calculator-credit">
+						<div class="calculator-credit__inputs">
+							<div class="calculator-credit__input-group">
+								<label class="calculator-credit__label" for="input-area">Сколько квадратных метров</label>
+								<div class="calculator-credit__value" id="area-value">20</div>
+								<div class="calculator-credit__input">
+									<input type="range" min="20" max="250" value="20" id="input-area">
+									<div class="calculator-credit__input-minmax">
+										<span>от 20</span>
+										<span>до 250</span>
+									</div>
+								</div>
+							</div>
+							<div class="calculator-credit__input-group">
+								<label class="calculator-credit__label" for="input-months">Срок ипотеки (месяцев)</label>
+								<div class="calculator-credit__value" id="months-value">12</div>
+								<div class="calculator-credit__input">
+									<input type="range" min="12" max="60" value="12" id="input-months">
+									<div class="calculator-credit__input-minmax">
+										<span>от 12</span>
+										<span>до 60</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="calculator-credit__results results-credit">
+							<div class="results-credit__title">Стоимость дома</div>
+							<div class="results-credit__house-value" id="total-price">1 100 000₽</div>
+							<div class="results-credit__payment">
+								<div class="results-credit__payment-item">
+									<div class="results-credit__payment-label">Первоначальный взнос 20%</div>
+									<div class="results-credit__payment-value" id="initial-payment">220 000 ₽</div>
+								</div>
+								<div class="results-credit__payment-item">
+									<div class="results-credit__payment-label">Ежемесячный платёж</div>
+									<div class="results-credit__payment-value" id="monthly-payment">73 333 ₽</div>
+								</div>
+							</div>
+							<div class="results-credit__text">
+								Сумма расчёта приблизительная и не является офертой. Более детальную информацию по расчёту ипотечного кредитования вы можете узнать у наших менеджеров.
+							</div>
+							<input type="tel" class="form-input-item" id="credit-phone" placeholder="+7 (___) ___-__-__">
+							<button class="results-credit__send" type="submit">Оставить заявку</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20251003160322" defer></script>
 </body>
 
 </html>
