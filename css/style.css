@@ -1680,7 +1680,7 @@ body::after {
   border-radius: 12px;
   transition: .3s;
   position: relative;
-  height: 300px
+  height: 200px
 }
 .answer-image__image ._icon-checked {
   position: absolute;
@@ -1741,16 +1741,18 @@ body::after {
   left: 0
 }
 .answer-text__text {
-  font-size: 20px;
+  font-size: 14px;
   padding: 20px;
   display: flex;
   align-items: center;
-  gap: 10px
+  gap: 5px;
+  text-align: left
 }
 .answer-text__text ._icon-checked {
   width: 25px;
   height: 25px;
   font-size: 11px;
+  flex: 0 0 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2955,8 +2957,14 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     width: 240px;
     padding: 15px 0
   }
+  .answer-image__image {
+    height: 250px
+  }
   .answer-image__text {
     font-size: 18px
+  }
+  .answer-text__text {
+    font-size: 15px
   }
   .form-quiz__bar-text {
     font-size: 13px
@@ -3039,6 +3047,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .quiz__question {
     font-size: 27px
   }
+  .answer-image__image {
+    height: 300px
+  }
   .answer-image__image ._icon-checked {
     width: 33px;
     height: 33px;
@@ -3048,9 +3059,14 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .answer-image__text {
     font-size: 20px
   }
+  .answer-text__text {
+    font-size: 20px;
+    gap: 10px
+  }
   .answer-text__text ._icon-checked {
     width: 33px;
     height: 33px;
+    flex: 0 0 33px;
     font-size: 15px;
     border-width: 5px
   }
