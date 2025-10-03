@@ -15,7 +15,7 @@
 						<div class="main__info-item"><img src="img/main/main-text-img.svg" alt="text"></div>
 						<p>Мы создаём каркасники в Йошкар-Оле качественно, стильно и «под ключ»!</p>
 					</div>
-					<button class="main__btn">В ипотеку <img src="img/main/cursor.png" alt="cursor"></button>
+					<button class="main__btn" data-popup="#credit-popup">В ипотеку <img src="img/main/cursor.png" alt="cursor"></button>
 				</div>
 			</div>
 			<div class="main-mob">
@@ -27,7 +27,7 @@
 						<a 
 						class="main-mob__play-btn"
 						data-lg-size="1280-720"
-						data-video='{"source": [{"src":"img/marikarkasvideo.webm", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
+						data-video='{"source": [{"src":"img/marikarkasvideo.mp4", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
 						>
 							<img src="img/main/play-video-btn.svg" alt="">
 						</a>
@@ -50,7 +50,7 @@
 					<div class="main-mob__btns">
 						<button class="main-mob__call-me" data-popup="#call-us-popup">Позвоните мне</button>
 						<div class="main-mob__btns-item">
-							<button class="main-mob__credit">Хочу в ипотеку<img src="img/main/cursor.png" alt="cursor"></button>
+							<button class="main-mob__credit" data-popup="#credit-popup">Хочу в ипотеку<img src="img/main/cursor.png" alt="cursor"></button>
 							<div class="main-mob__credit-image">
 								<img src="img/main/stroke-phone.png" alt="credit">
 							</div>
@@ -306,7 +306,7 @@
 									type="tel" 
 									id="quizFormPhone" 
 									placeholder="+7 (___) ___-__-__" 
-									class="form-quiz__phone"
+									class="form-input-item"
 								>
 								<button type="submit" class="form-quiz__btn">
 									Получить каталог проектов <span>+бонус</span>
@@ -569,7 +569,8 @@
 		</main>
 		@@include('html/_footer.htm',{})
 	</div>
-	@@include('html/_popup.htm',{})
+	@@include('html/_popup-call.htm',{})
+	@@include('html/_popup-credit.htm',{})
 	@@include('html/_js.htm',{})
 </body>
 

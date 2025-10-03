@@ -412,6 +412,9 @@ video {
 .block {
   display: block
 }
+.inline-flex {
+  display: inline-flex
+}
 .hidden {
   display: none
 }
@@ -536,7 +539,6 @@ body::after {
   background-color: #eee;
   padding: 20px;
   width: 100%;
-  max-width: 600px;
   border-radius: 20px
 }
 .lock .popup__content {
@@ -544,6 +546,9 @@ body::after {
 }
 .form-popup__body {
   padding: 30px 0 50px 0
+}
+.form-popup__content {
+  max-width: 600px
 }
 .form-popup__form-btn {
   font-size: 20px;
@@ -560,6 +565,147 @@ body::after {
 }
 .form-popup__form-text span {
   color: orange
+}
+.credit-popup {
+  padding: 0
+}
+.credit-popup__content {
+  max-width: 800px;
+  padding: 0;
+  border-radius: 0;
+  position: relative;
+  padding-top: 50px
+}
+.credit-popup__content .popup__close {
+  position: absolute;
+  right: 20px;
+  top: 20px
+}
+.credit-popup__body {
+  width: 100%;
+  margin: 0 auto
+}
+.credit-popup__title {
+  font-size: 25px;
+  font-weight: 700;
+  color: #6c7a6e;
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative
+}
+.credit-popup__title:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 110%;
+  height: 3px;
+  background-color: #ffcf00
+}
+.credit-popup__calculator {
+  margin-top: 30px;
+  border-radius: 5px;
+  box-shadow: 0 1px 8px 4px rgba(34,60,80,.087)
+}
+.calculator-credit__inputs {
+  padding: 30px
+}
+.calculator-credit__input-group {
+  margin-bottom: 20px
+}
+.calculator-credit__label {
+  font-size: 18px;
+  font-weight: 500
+}
+.calculator-credit__value {
+  font-size: 27px;
+  font-weight: 700;
+  margin-top: 20px
+}
+.calculator-credit__input-minmax {
+  color: #9ca3af;
+  margin-top: -5px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between
+}
+.results-credit {
+  background-color: #ffcf00;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  border-radius: 20px 20px 0 0
+}
+.results-credit::before {
+  position: absolute;
+  content: "";
+  top: -32px;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #ffcf00;
+  -webkit-transform: rotate(-45deg) translateX(-50%);
+  transform: rotate(-45deg) translateX(-50%);
+  z-index: -1
+}
+.results-credit__title {
+  font-size: 23px;
+  font-weight: 700
+}
+.results-credit__house-value {
+  background-color: #008055;
+  color: #fff;
+  font-size: 27px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 12px 0;
+  margin-top: 10px
+}
+.results-credit__payment {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center
+}
+.results-credit__payment-item {
+  border: 2px dashed rgba(0,0,0,.2);
+  border-radius: 7px;
+  padding: 10px 20px;
+  flex: 1
+}
+.results-credit__payment-label {
+  font-size: 16px
+}
+.results-credit__payment-value {
+  font-size: 22px;
+  font-weight: 700
+}
+.results-credit__text {
+  margin-top: 20px;
+  font-size: 13px
+}
+.results-credit__send {
+  background-color: #06c;
+  color: #fff;
+  width: 100%;
+  border-radius: 20px;
+  padding: 15px 15px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px
+}
+.results-credit__send:hover {
+  background-color: #05a
+}
+.results-credit__phone-inp {
+  width: 100%;
+  background-color: gray;
+  color: #000
 }
 .ibg {
   width: 100%;
@@ -1381,6 +1527,12 @@ body::after {
   overflow: hidden;
   z-index: 1
 }
+.quiz__next:disabled {
+  opacity: .6
+}
+.quiz__next:disabled:hover {
+  opacity: .6
+}
 .quiz__next::after {
   content: "";
   position: absolute;
@@ -1511,7 +1663,8 @@ body::after {
 .answer-image__label {
   position: relative;
   cursor: pointer;
-  transition: .3s
+  transition: .3s;
+  width: 100%
 }
 .answer-image__label:hover .answer-image__image {
   box-shadow: 0 1px 7px 4px rgba(34,60,80,.2)
@@ -1526,7 +1679,8 @@ body::after {
   border: 2px solid transparent;
   border-radius: 12px;
   transition: .3s;
-  position: relative
+  position: relative;
+  height: 300px
 }
 .answer-image__image ._icon-checked {
   position: absolute;
@@ -1549,8 +1703,8 @@ body::after {
   border-radius: 10px;
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-  object-fit: contain
+  -o-object-fit: cover;
+  object-fit: cover
 }
 .answer-image__text {
   font-size: 16px;
@@ -1604,6 +1758,16 @@ body::after {
   border: 3px solid #fff;
   background-color: #f5f6f6;
   color: #c5c4c4
+}
+.form-input-item {
+  background-color: #dfdfdf;
+  color: #282828;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 15px 10px;
+  border-radius: 15px;
+  margin-top: 30px;
+  outline: 0
 }
 .form-quiz {
   width: 100%;
@@ -1669,15 +1833,6 @@ body::after {
   color: #282828;
   font-size: 22px;
   text-align: center
-}
-.form-quiz__phone {
-  background-color: #dfdfdf;
-  color: #282828;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 15px 10px;
-  border-radius: 15px;
-  margin-top: 30px
 }
 .form-quiz__btn {
   width: 100%;
@@ -1906,7 +2061,7 @@ body::after {
   border: 1px solid gray;
   border-radius: 10px;
   padding: 20px;
-  max-width: 340px
+  max-width: 310px
 }
 .reviews__top {
   display: flex;
@@ -2761,6 +2916,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   transform: translate(-50%,-50%) scale(.7)
 }
 @media (min-width:29.99875em) {
+  .results-credit__payment {
+    flex-direction: row
+  }
   .footer__btns {
     gap: 10px;
     flex-direction: row
@@ -2814,6 +2972,25 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 @media (min-width:47.99875em) {
   .form-popup__form-text {
     font-size: 15px
+  }
+  .credit-popup {
+    padding: 30px 10px
+  }
+  .credit-popup__content {
+    padding: 20px;
+    padding-bottom: 60px;
+    padding-top: 50px;
+    border-radius: 20px
+  }
+  .credit-popup__body {
+    width: 90%
+  }
+  .results-credit {
+    border-radius: 5px
+  }
+  .results-credit__payment {
+    gap: 20px;
+    margin-top: 20px
   }
   .header__logo {
     width: 88px;
@@ -2903,6 +3080,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .reviews__title {
     font-size: 37px
+  }
+  .reviews__slide {
+    max-width: 350px
   }
   .reviews__next-btn,
   .reviews__prev-btn {

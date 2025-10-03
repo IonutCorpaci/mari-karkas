@@ -53,7 +53,6 @@ body::after {
 	background-color: #eee;
 	padding: 20px;
 	width: 100%;
-	max-width: 600px;
 	border-radius: 20px;
 	.lock & {
 		visibility: visible;
@@ -66,6 +65,10 @@ body::after {
 	}
 
 	&__form {
+	}
+
+	&__content {
+		max-width: 600px;
 	}
 
 	&__form-btn {
@@ -92,5 +95,237 @@ body::after {
 		@media (min-width: $mobile) {
 			font-size: 15px;
 		}
+	}
+}
+
+.credit-popup {
+	padding: 0;
+	@media (min-width: $mobile) {
+		padding: 30px 10px;
+	}
+	// .credit-popup__content
+
+	&__content {
+		max-width: 800px;
+		padding: 0;
+		border-radius: 0;
+		position: relative;
+		padding-top: 50px;
+		// padding-bottom: 20px;
+		@media (min-width: $mobile) {
+			padding: 20px;
+			padding-bottom: 60px;
+			padding-top: 50px;
+			border-radius: 20px;
+		}
+
+		.popup__close {
+			position: absolute;
+			right: 20px;
+			top: 20px;
+		}
+	}
+
+	// .credit-popup__body
+
+	&__body {
+		width: 100%;
+		margin: 0px auto;
+		@media (min-width: $mobile) {
+			width: 90%;
+		}
+	}
+
+	// .credit-popup__title
+
+	&__title {
+		font-size: 25px;
+		font-weight: 700;
+		color: #6c7a6e;
+		margin: 0px auto;
+		width: fit-content;
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 110%;
+			height: 3px;
+			background-color: #ffcf00;
+		}
+	}
+
+	// .credit-popup__calculator
+
+	&__calculator {
+		margin-top: 30px;
+		border-radius: 5px;
+		box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.087);
+	}
+}
+.calculator-credit {
+	// .calculator-credit__inputs
+
+	&__inputs {
+		padding: 30px;
+	}
+
+	// .calculator-credit__input-group
+
+	&__input-group {
+		margin-bottom: 20px;
+	}
+
+	// .calculator-credit__label
+
+	&__label {
+		font-size: 18px;
+		font-weight: 500;
+	}
+
+	// .calculator-credit__value
+
+	&__value {
+		font-size: 27px;
+		font-weight: 700;
+		margin-top: 20px;
+	}
+
+	// .calculator-credit__input
+
+	&__input {
+	}
+
+	// .calculator-credit__input-minmax
+
+	&__input-minmax {
+		color: #9ca3af;
+		margin-top: -5px;
+		font-size: 13px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// .calculator-credit__results
+
+	&__results {
+	}
+}
+.area-value {
+}
+.months-value {
+}
+.results-credit {
+	background-color: #ffcf00;
+	padding: 30px;
+	text-align: center;
+	position: relative;
+	border-radius: 20px 20px 0 0;
+
+	@media (min-width: $mobile) {
+		border-radius: 5px;
+	}
+
+	&::before {
+		position: absolute;
+		content: "";
+		top: -32px;
+		left: 50%;
+		width: 50px;
+		height: 50px;
+		background-color: #ffcf00;
+		transform: rotate(-45deg) translateX(-50%);
+		z-index: -1;
+	}
+	// .results-credit__title
+
+	&__title {
+		font-size: 23px;
+		font-weight: 700;
+	}
+
+	// .results-credit__house-value
+
+	&__house-value {
+		background-color: #008055;
+		color: #fff;
+		font-size: 27px;
+		font-weight: 700;
+		border-radius: 5px;
+		padding: 12px 0;
+		margin-top: 10px;
+	}
+
+	// .results-credit__payment
+
+	&__payment {
+		margin-top: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		justify-content: center;
+
+		@media (min-width: $mobileSmall) {
+			flex-direction: row;
+		}
+
+		@media (min-width: $mobile) {
+			gap: 20px;
+			margin-top: 20px;
+		}
+	}
+
+	// .results-credit__payment-item
+
+	&__payment-item {
+		border: 2px dashed rgba(0, 0, 0, 0.2);
+		border-radius: 7px;
+		padding: 10px 20px;
+		flex: 1;
+	}
+
+	// .results-credit__payment-label
+
+	&__payment-label {
+		font-size: 16px;
+	}
+
+	// .results-credit__payment-value
+
+	&__payment-value {
+		font-size: 22px;
+		font-weight: 700;
+	}
+
+	// .results-credit__text
+
+	&__text {
+		margin-top: 20px;
+		font-size: 13px;
+	}
+
+	// .results-credit__send
+
+	&__send {
+		background-color: #0066cc;
+		color: #fff;
+		width: 100%;
+		border-radius: 20px;
+		padding: 15px 15px;
+		font-size: 18px;
+		font-weight: 600;
+		margin-top: 20px;
+		&:hover {
+			background-color: #0055aa;
+		}
+	}
+
+	&__phone-inp {
+		width: 100%;
+		background-color: grey;
+		color: black;
 	}
 }

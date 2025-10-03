@@ -1,0 +1,65 @@
+<div id="credit-popup" aria-hidden="true" class="popup credit-popup">
+	<div class="popup__wrapper">
+		<div class="credit-popup__content popup__content">
+			<button data-close type="button" class="popup__close">
+				<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
+					<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
+				</svg>
+			</button>
+			<form class="credit-popup__body">
+				<div class="credit-popup__title">Расчёт ипотеки</div>
+				<div class="credit-popup__calculator calculator-credit">
+					<div class="calculator-credit__inputs">
+						<div class="calculator-credit__input-group">
+							<label class="calculator-credit__label" for="input-area">Сколько квадратных метров</label>
+							<div class="calculator-credit__value" id="area-value">20</div>
+							<div class="calculator-credit__input">
+								<input type="range" min="20" max="250" value="20" id="input-area">
+								<div class="calculator-credit__input-minmax">
+									<span>от 20</span>
+									<span>до 250</span>
+								</div>
+							</div>
+						</div>
+						<div class="calculator-credit__input-group">
+							<label class="calculator-credit__label" for="input-months">Срок ипотеки (месяцев)</label>
+							<div class="calculator-credit__value" id="months-value">12</div>
+							<div class="calculator-credit__input">
+								<input type="range" min="12" max="60" value="12" id="input-months">
+								<div class="calculator-credit__input-minmax">
+									<span>от 12</span>
+									<span>до 60</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="calculator-credit__results results-credit">
+						<div class="results-credit__title">Стоимость дома</div>
+						<div class="results-credit__house-value" id="total-price">1 100 000₽</div>
+						<div class="results-credit__payment">
+							<div class="results-credit__payment-item">
+								<div class="results-credit__payment-label">Первоначальный взнос 20%</div>
+								<div class="results-credit__payment-value" id="initial-payment">220 000 ₽</div>
+							</div>
+							<div class="results-credit__payment-item">
+								<div class="results-credit__payment-label">Ежемесячный платёж</div>
+								<div class="results-credit__payment-value" id="monthly-payment">73 333 ₽</div>
+							</div>
+						</div>
+						<div class="results-credit__text">
+							Сумма расчёта приблизительная и не является офертой. Более детальную информацию по расчёту ипотечного кредитования вы можете узнать у наших менеджеров.
+						</div>
+						<input 
+							type="tel" 
+							class="form-input-item" 
+							id="credit-phone" 
+							placeholder="+7 (___) ___-__-__" 
+						>
+						<button class="results-credit__send" type="submit">Оставить заявку</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
