@@ -1267,14 +1267,14 @@ body::after {
   position: relative;
   padding: 0;
   border-radius: 0;
-  width: 80%;
-  height: 95%;
-  max-width: 500px;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
   overflow: hidden
 }
 .reels-popup__content .popup__close {
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 18px;
   z-index: 2;
   color: #fff;
@@ -3132,6 +3132,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .reels__sw-item {
     display: none
+  }
+  .reels-popup__content {
+    max-width: 500px;
+    height: 95%
   }
   .our-team__info {
     font-size: 20px
