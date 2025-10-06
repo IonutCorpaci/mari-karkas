@@ -470,7 +470,7 @@ function showReel(index) {
   info.className = 'reels-popup__info';
   info.innerHTML = `
     <div class="reels-popup__image">
-      <img src="img/reels/reel-${index + 1}.png" alt="">
+      <img src="img/reels/reel-${index + 1}.webp" alt="">
     </div>
     <div class="reels-popup__name">${reelsObj[index].name}</div>
   `;

@@ -1285,7 +1285,9 @@ body::after {
   outline: 0
 }
 .reels-popup__body {
-  position: relative
+  position: relative;
+  width: 100%;
+  height: 100%
 }
 .reels-popup__info {
   display: flex;
@@ -1316,7 +1318,9 @@ body::after {
 .reels-popup video {
   display: none;
   width: 100%;
-  height: 100%
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover
 }
 .reels-popup__progress {
   width: 100%;
