@@ -28,9 +28,9 @@ import "../../scss/base/swiper.scss";
 function initSliders() {
 	// Список слайдерів
 	// Перевіряємо, чи є слайдер на сторінці
-	if (document.querySelector('.houses-example__slider')) { // Вказуємо склас потрібного слайдера
+	if (document.querySelector('.we-build__slider')) { // Вказуємо склас потрібного слайдера
 		// Створюємо слайдер
-		new Swiper('.houses-example__slider', { // Вказуємо склас потрібного слайдера
+		new Swiper('.we-build__slider', { // Вказуємо склас потрібного слайдера
 			// Підключаємо модулі слайдера
 			// для конкретного випадку
 			modules: [Navigation],
@@ -76,17 +76,13 @@ function initSliders() {
 
 			// Кнопки "вліво/вправо"
 			navigation: {
-				prevEl: '.houses-example__prev',
-				nextEl: '.houses-example__next',
+				prevEl: '.we-build__prev',
+				nextEl: '.we-build__next',
 			},
 			
 			breakpoints: {
 				340: {
-					slidesPerView: 1,
-					spaceBetween: 10,
-				},
-				580: {
-					slidesPerView: 2,
+					slidesPerView: "auto",
 					spaceBetween: 10,
 				},
 				768: {

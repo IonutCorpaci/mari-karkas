@@ -381,6 +381,120 @@
     }
 }
 
+.reels-popup {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: none;
+
+    &.popup_show {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        video {
+            display: block;
+        }
+    }
+    &__wrapper {
+    }
+
+    &__content {
+        position: relative;
+        padding: 0;
+        border-radius: 0;
+        width: 80%;
+        height: 95%;
+        max-width: 500px;
+        overflow: hidden;
+
+        .popup__close {
+            position: absolute;
+            right: 10px;
+            top: 18px;
+            z-index: 2;
+            color: #fff;
+            font-size: 40px;
+            width: 22px;
+            height: 20px;
+            line-height: 30%;
+            outline: none;
+        }
+    }
+
+    &__body {
+        position: relative;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    &__image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        img {
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__name {
+        font-size: 14px;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    video {
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__progress {
+        width: 100%;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    &__progress-bar {
+        width: 0%;
+        height: 100%;
+        background-color: #00ff00;
+        transition: width 0.3s ease;
+    }
+
+    &__nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 40px;
+        color: #fff;
+        z-index: 2;
+    }
+
+    &__prev {
+        left: 20px;
+    }
+
+    &__next {
+        right: 20px;
+    }
+}
+
 //=================================== Our Team ===================================
 @keyframes teamBackrAnimation {
     from {
@@ -1419,7 +1533,7 @@
 }
 //=================================== House Images Slider ===================================
 
-.houses-example {
+.we-build {
     margin-top: clamp(40px, 7vw, 100px);
     // .houses-example__container
 

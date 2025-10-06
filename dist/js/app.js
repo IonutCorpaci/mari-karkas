@@ -3644,7 +3644,7 @@
             });
         }
         function initSliders() {
-            if (document.querySelector(".houses-example__slider")) new swiper_core_Swiper(".houses-example__slider", {
+            if (document.querySelector(".we-build__slider")) new swiper_core_Swiper(".we-build__slider", {
                 modules: [ Navigation ],
                 observer: true,
                 observeParents: true,
@@ -3654,16 +3654,12 @@
                 loop: true,
                 speed: 800,
                 navigation: {
-                    prevEl: ".houses-example__prev",
-                    nextEl: ".houses-example__next"
+                    prevEl: ".we-build__prev",
+                    nextEl: ".we-build__next"
                 },
                 breakpoints: {
                     340: {
-                        slidesPerView: 1,
-                        spaceBetween: 10
-                    },
-                    580: {
-                        slidesPerView: 2,
+                        slidesPerView: "auto",
                         spaceBetween: 10
                     },
                     768: {
@@ -5705,6 +5701,61 @@ PERFORMANCE OF THIS SOFTWARE.
             }
         }));
         renderStep();
+        const reelsObj = [ {
+            url: "../img/reels/reels-1.mp4",
+            name: "Классический каркасный дом"
+        }, {
+            url: "../img/reels/reels-2.mp4",
+            name: "Карскасный дом А-фрейм"
+        }, {
+            url: "../img/reels/reels-3.mp4",
+            name: "Каркасный дом Барнхаус"
+        }, {
+            url: "../img/reels/reels-4.mp4",
+            name: "Каркасная баня от «Мари Каркас»"
+        } ];
+        const reelsItems = document.querySelectorAll(".reels__item");
+        const reelsBody = document.querySelector(".reels-popup__body");
+        const prevReelsBtn = document.querySelector(".reels-popup__prev");
+        const nextReelsBtn = document.querySelector(".reels-popup__next");
+        let progressBarReels = document.querySelector(".reels-popup__progress-bar");
+        let currentIndex = 0;
+        function showReel(index) {
+            if (index < 0) index = reelsObj.length - 1;
+            if (index >= reelsObj.length) index = 0;
+            currentIndex = index;
+            reelsBody.innerHTML = "";
+            const video = document.createElement("video");
+            video.autoplay = true;
+            video.loop = true;
+            video.playsInline = true;
+            video.muted = true;
+            video.ontimeupdate = () => {
+                const progress = video.currentTime / video.duration * 100;
+                progressBarReels.style.width = `${progress}%`;
+            };
+            const source = document.createElement("source");
+            source.src = reelsObj[index].url;
+            source.type = "video/mp4";
+            video.appendChild(source);
+            const info = document.createElement("div");
+            info.className = "reels-popup__info";
+            info.innerHTML = `\n    <div class="reels-popup__image">\n      <img src="../img/reels/reel-${index + 1}.png" alt="">\n    </div>\n    <div class="reels-popup__name">${reelsObj[index].name}</div>\n  `;
+            reelsBody.appendChild(video);
+            reelsBody.appendChild(info);
+            video.play();
+        }
+        prevReelsBtn.addEventListener("click", (() => {
+            showReel(currentIndex - 1);
+        }));
+        nextReelsBtn.addEventListener("click", (() => {
+            showReel(currentIndex + 1);
+        }));
+        reelsItems.forEach(((item, i) => {
+            item.addEventListener("click", (() => {
+                showReel(i);
+            }));
+        }));
         window["FLS"] = false;
         addLoadedClass();
     })();

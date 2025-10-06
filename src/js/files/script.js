@@ -419,3 +419,84 @@ prevBtn.addEventListener("click", () => {
 
 // Старт
 renderStep();
+
+
+
+const reelsObj = [
+  { url: '../img/reels/reels-1.mp4', name: 'Классический каркасный дом'},
+  { url: '../img/reels/reels-2.mp4', name: 'Карскасный дом А-фрейм' },
+  { url: '../img/reels/reels-3.mp4', name: 'Каркасный дом Барнхаус' },
+  { url: '../img/reels/reels-4.mp4', name: 'Каркасная баня от «Мари Каркас»' },
+];
+
+const reelsItems = document.querySelectorAll('.reels__item');
+const reelsBody = document.querySelector('.reels-popup__body');
+const prevReelsBtn = document.querySelector('.reels-popup__prev');
+const nextReelsBtn = document.querySelector('.reels-popup__next');
+let progressBarReels = document.querySelector('.reels-popup__progress-bar')
+
+let currentIndex = 0;
+
+// функция для отображения видео по индексу
+function showReel(index) {
+  // ограничиваем индекс в пределах массива
+  if (index < 0) index = reelsObj.length - 1;
+  if (index >= reelsObj.length) index = 0;
+  currentIndex = index;
+
+  // очищаем контейнер
+  reelsBody.innerHTML = '';
+
+  // создаем элемент video
+  const video = document.createElement('video');
+  video.autoplay = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.muted = true; // autoplay будет работать
+
+  video.ontimeupdate = () => {
+      const progress = (video.currentTime / video.duration) * 100;
+      progressBarReels.style.width = `${progress}%`;
+    };
+
+  // создаем source
+  const source = document.createElement('source');
+  source.src = reelsObj[index].url;
+  source.type = 'video/mp4';
+  video.appendChild(source);
+
+  // создаем инфо-блок
+  const info = document.createElement('div');
+  info.className = 'reels-popup__info';
+  info.innerHTML = `
+    <div class="reels-popup__image">
+      <img src="../img/reels/reel-${index + 1}.png" alt="">
+    </div>
+    <div class="reels-popup__name">${reelsObj[index].name}</div>
+  `;
+
+  // добавляем всё в body
+  reelsBody.appendChild(video);
+  reelsBody.appendChild(info);
+
+  // запускаем видео
+  video.play();
+}
+
+// обработчики стрелок
+prevReelsBtn.addEventListener('click', () => {
+  showReel(currentIndex - 1);
+});
+
+nextReelsBtn.addEventListener('click', () => {
+  showReel(currentIndex + 1);
+});
+
+// при клике на элемент — открыть модалку и показать нужное видео
+reelsItems.forEach((item, i) => {
+  item.addEventListener('click', () => {
+    showReel(i);
+  });
+});
+
+
