@@ -235,23 +235,19 @@ const prevBtn = quizApp.querySelector(".quiz__prev");
 const nextBtn = quizApp.querySelector(".quiz__next");
 
 let currentStep = 0;
-let answers = {}; // накопитель ответов
+let answers = {};
 
 function renderStep() {
   const step = quizObj[currentStep];
 
-  // Вопрос
   questionEl.textContent = step.question;
 
-  // Удаляем старые блоки ответов
   quizApp.querySelector(".quiz__answers-image")?.remove();
   quizApp.querySelector(".quiz__answers-text")?.remove();
 
-  // Создаём wrapper
   const answersWrapper = document.createElement("div");
   answersWrapper.className = step.type === "image-answ" ? "quiz__answers-image" : "quiz__answers-text";
 
-  // Генерация вариантов
   step.options?.forEach(opt => {
     const optionDiv = document.createElement("div");
     if (step.type === "image-answ") {
@@ -281,10 +277,8 @@ function renderStep() {
     answersWrapper.appendChild(optionDiv);
   });
 
-  // Вставляем сразу после вопроса (не в .quiz__btns)
   questionEl.after(answersWrapper);
 
-  // Восстанавливаем предыдущий выбор (если есть), и выставляем selected-answer
   const inputs = answersWrapper.querySelectorAll("input");
   if (answers[`q${currentStep}`]) {
     if (inputs.length) {
@@ -306,7 +300,6 @@ function renderStep() {
     }
   }
 
-  // Установим начальное состояние кнопки Далее (если уже есть выбор)
   if (inputs.length) {
     if (inputs[0].type === "radio") {
       nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
@@ -317,40 +310,31 @@ function renderStep() {
     nextBtn.disabled = true;
   }
 
-  // Функции обновления состояния (чтобы переиспользовать)
   function updateAfterRadioChange(changedInput) {
-    // отмечаем в answers
     answers[`q${currentStep}`] = changedInput.value;
 
-    // manage classes: оставляем selected только у выбранного
     inputs.forEach(i => {
       const parent = i.closest(".quiz__answer-image, .quiz__answer-text");
       if (i.checked) parent?.classList.add("selected-answer");
       else parent?.classList.remove("selected-answer");
     });
 
-    // включаем кнопку если что-то выбрано
     nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
   }
 
 function updateAfterCheckboxChange(changedInput) {
   const parent = changedInput.closest(".quiz__answer-image, .quiz__answer-text");
 
-  // selected-answer
   if (changedInput.checked) parent?.classList.add("selected-answer");
   else parent?.classList.remove("selected-answer");
 
-  // Обновляем answers как строку через запятую
   const checkedInputs = Array.from(parent.closest(".quiz__answers-text, .quiz__answers-image").querySelectorAll("input[type=checkbox]:checked"));
   const values = checkedInputs.map(i => i.value);
-  answers[`q${currentStep}`] = values.join(", "); // строка через запятую
+  answers[`q${currentStep}`] = values.join(", ");
 
-  // Включаем кнопку Далее если есть хотя бы один checked
   nextBtn.disabled = values.length === 0;
 }
 
-  // Навесим обработчики:
-  // 1) на сам input (change) — для случаев, когда браузер всё-таки изменил checked
   inputs.forEach(i => {
     i.addEventListener("change", () => {
       if (i.type === "radio") updateAfterRadioChange(i);
@@ -358,12 +342,10 @@ function updateAfterCheckboxChange(changedInput) {
     });
   });
 
-  // 2) на контейнер каждого варианта — клики по тексту/картинке/кнопке
   const optionDivs = answersWrapper.querySelectorAll(".quiz__answer-image, .quiz__answer-text");
   optionDivs.forEach(div => {
     const input = div.querySelector("input");
     div.addEventListener("click", (e) => {
-      // если клик по настоящей ссылке/элементу, всё равно предотвратим дефолт на button внутри label
       if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === "button") {
         e.preventDefault();
       }
@@ -371,36 +353,31 @@ function updateAfterCheckboxChange(changedInput) {
       if (!input) return;
 
       if (input.type === "radio") {
-        // установим checked (браузер снимет checked с других радио в группе автоматически)
         if (!input.checked) {
           input.checked = true;
-          // вручную вызовем change, т.к. мы программно изменили checked
           input.dispatchEvent(new Event("change", { bubbles: true }));
         } else {
-          // если уже выбран — не снимаем (радио не должно сниматься кликом)
           input.checked = true;
         }
       } else if (input.type === "checkbox") {
-        // переключаем чек
+
         input.checked = !input.checked;
         input.dispatchEvent(new Event("change", { bubbles: true }));
       }
     });
   });
 
-  // Кнопки
   prevBtn.style.display = currentStep === 0 ? "none" : "inline-flex";
   nextBtn.textContent = "Далее";
 }
 
-// Далее
 nextBtn.addEventListener("click", () => {
   if (currentStep < quizObj.length - 1) {
     currentStep++;
     console.log(answers);
     renderStep();
   } else if (currentStep === quizObj.length - 1) {
-    // последний шаг пройден — скрываем app/manager и показываем готовую форму
+
     quizApp.style.display = "none";
     document.querySelector(".quiz__manager").style.display = "none";
 
@@ -409,7 +386,6 @@ nextBtn.addEventListener("click", () => {
   }
 });
 
-// Назад
 prevBtn.addEventListener("click", () => {
   if (currentStep > 0) {
     currentStep--;
@@ -417,7 +393,6 @@ prevBtn.addEventListener("click", () => {
   }
 });
 
-// Старт
 renderStep();
 
 
@@ -434,38 +409,34 @@ const reelsBody = document.querySelector('.reels-popup__body');
 const prevReelsBtn = document.querySelector('.reels-popup__prev');
 const nextReelsBtn = document.querySelector('.reels-popup__next');
 let progressBarReels = document.querySelector('.reels-popup__progress-bar')
+const reelsPopap = document.querySelector('#reels-popup')
+const closeReelsBtn = reelsPopap.querySelector('#reels-popup-close')
 
 let currentIndex = 0;
 
-// функция для отображения видео по индексу
 function showReel(index) {
-  // ограничиваем индекс в пределах массива
   if (index < 0) index = reelsObj.length - 1;
   if (index >= reelsObj.length) index = 0;
   currentIndex = index;
 
-  // очищаем контейнер
   reelsBody.innerHTML = '';
 
-  // создаем элемент video
   const video = document.createElement('video');
   video.autoplay = true;
   video.loop = true;
   video.playsInline = true;
-  video.muted = true; // autoplay будет работать
+  video.muted = false;
 
   video.ontimeupdate = () => {
       const progress = (video.currentTime / video.duration) * 100;
       progressBarReels.style.width = `${progress}%`;
     };
 
-  // создаем source
   const source = document.createElement('source');
   source.src = reelsObj[index].url;
   source.type = 'video/mp4';
   video.appendChild(source);
 
-  // создаем инфо-блок
   const info = document.createElement('div');
   info.className = 'reels-popup__info';
   info.innerHTML = `
@@ -475,15 +446,12 @@ function showReel(index) {
     <div class="reels-popup__name">${reelsObj[index].name}</div>
   `;
 
-  // добавляем всё в body
   reelsBody.appendChild(video);
   reelsBody.appendChild(info);
 
-  // запускаем видео
   video.play();
 }
 
-// обработчики стрелок
 prevReelsBtn.addEventListener('click', () => {
   showReel(currentIndex - 1);
 });
@@ -492,11 +460,31 @@ nextReelsBtn.addEventListener('click', () => {
   showReel(currentIndex + 1);
 });
 
-// при клике на элемент — открыть модалку и показать нужное видео
 reelsItems.forEach((item, i) => {
   item.addEventListener('click', () => {
     showReel(i);
   });
 });
+
+closeReelsBtn.addEventListener('click', () => {
+  stopVideo();
+});
+
+reelsPopap.addEventListener('click', (e) => {
+  if (e.target === reelsPopap) {
+    stopVideo();
+  }
+});
+
+function stopVideo() {
+  const video = reelsBody.querySelector('video');
+  if (video) {
+    video.pause();
+    video.muted = true;
+    video.src = '';
+    video.load();
+  }
+  reelsBody.innerHTML = '';
+}
 
 

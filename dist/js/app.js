@@ -5719,6 +5719,8 @@ PERFORMANCE OF THIS SOFTWARE.
         const prevReelsBtn = document.querySelector(".reels-popup__prev");
         const nextReelsBtn = document.querySelector(".reels-popup__next");
         let progressBarReels = document.querySelector(".reels-popup__progress-bar");
+        const reelsPopap = document.querySelector("#reels-popup");
+        const closeReelsBtn = reelsPopap.querySelector("#reels-popup-close");
         let currentIndex = 0;
         function showReel(index) {
             if (index < 0) index = reelsObj.length - 1;
@@ -5729,7 +5731,7 @@ PERFORMANCE OF THIS SOFTWARE.
             video.autoplay = true;
             video.loop = true;
             video.playsInline = true;
-            video.muted = true;
+            video.muted = false;
             video.ontimeupdate = () => {
                 const progress = video.currentTime / video.duration * 100;
                 progressBarReels.style.width = `${progress}%`;
@@ -5756,6 +5758,22 @@ PERFORMANCE OF THIS SOFTWARE.
                 showReel(i);
             }));
         }));
+        closeReelsBtn.addEventListener("click", (() => {
+            stopVideo();
+        }));
+        reelsPopap.addEventListener("click", (e => {
+            if (e.target === reelsPopap) stopVideo();
+        }));
+        function stopVideo() {
+            const video = reelsBody.querySelector("video");
+            if (video) {
+                video.pause();
+                video.muted = true;
+                video.src = "";
+                video.load();
+            }
+            reelsBody.innerHTML = "";
+        }
         window["FLS"] = false;
         addLoadedClass();
     })();
