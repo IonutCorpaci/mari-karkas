@@ -5702,16 +5702,16 @@ PERFORMANCE OF THIS SOFTWARE.
         }));
         renderStep();
         const reelsObj = [ {
-            url: "../img/reels/reels-1.mp4",
+            url: "img/reels/reels-1.mp4",
             name: "Классический каркасный дом"
         }, {
-            url: "../img/reels/reels-2.mp4",
+            url: "img/reels/reels-2.mp4",
             name: "Карскасный дом А-фрейм"
         }, {
-            url: "../img/reels/reels-3.mp4",
+            url: "img/reels/reels-3.mp4",
             name: "Каркасный дом Барнхаус"
         }, {
-            url: "../img/reels/reels-4.mp4",
+            url: "img/reels/reels-4.mp4",
             name: "Каркасная баня от «Мари Каркас»"
         } ];
         const reelsItems = document.querySelectorAll(".reels__item");
@@ -5740,7 +5740,7 @@ PERFORMANCE OF THIS SOFTWARE.
             video.appendChild(source);
             const info = document.createElement("div");
             info.className = "reels-popup__info";
-            info.innerHTML = `\n    <div class="reels-popup__image">\n      <img src="../img/reels/reel-${index + 1}.png" alt="">\n    </div>\n    <div class="reels-popup__name">${reelsObj[index].name}</div>\n  `;
+            info.innerHTML = `\n    <div class="reels-popup__image">\n      <img src="img/reels/reel-${index + 1}.png" alt="">\n    </div>\n    <div class="reels-popup__name">${reelsObj[index].name}</div>\n  `;
             reelsBody.appendChild(video);
             reelsBody.appendChild(info);
             video.play();
