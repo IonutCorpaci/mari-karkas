@@ -40,6 +40,7 @@ function initSliders() {
 			slidesPerView: 4,
 			spaceBetween: 30,
 			loop: true,
+			freeMode: true,
 			// autoHeight: true,
 			speed: 800,
 
@@ -81,12 +82,16 @@ function initSliders() {
 			},
 			
 			breakpoints: {
-				340: {
-					slidesPerView: "auto",
-					spaceBetween: 10,
+				320: {
+					slidesPerView: 1.2,
+					spaceBetween: 20,
+				},
+				480: {
+					slidesPerView: 1.5,
+					spaceBetween: 20,
 				},
 				768: {
-					slidesPerView: 2,
+					slidesPerView: 3,
 					spaceBetween: 10,
 				},
 				992: {

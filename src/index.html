@@ -307,9 +307,12 @@
 									id="quizFormPhone" 
 									placeholder="+7 (___) ___-__-__" 
 									class="form-input-item"
+									required
 								>
+								<div class="form-error-message"></div>
 								<button type="submit" class="form-quiz__btn">
 									Получить каталог проектов <span>+бонус</span>
+									<span class="btn__load" style="display:none;">Отправка...</span>
 								</button>
 								<div class="form-quiz__agreement">
 									<input type="checkbox" name="agreement" checked="" required="">
@@ -318,6 +321,7 @@
 								<div class="form-quiz__arrow-image">
 									<img src="img/quiz/form-quiz-arrow.png" alt="arrow">
 								</div>
+								<div class="form-succes-message"></div>
 							</form>
 							<div class="form-quiz__image">
 								<img src="img/quiz/form-quiz-image.webp" alt="">

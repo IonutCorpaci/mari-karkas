@@ -65,6 +65,10 @@ body::after {
 	}
 
 	&__form {
+		.form-error-message {
+			margin-top: 10px;
+			margin-left: 10px;
+		}
 	}
 
 	&__content {
@@ -214,16 +218,19 @@ body::after {
 	&__results {
 	}
 }
-.area-value {
-}
-.months-value {
-}
+
 .results-credit {
 	background-color: #ffcf00;
 	padding: 30px;
 	text-align: center;
 	position: relative;
 	border-radius: 20px 20px 0 0;
+
+	.form-error-message {
+		margin-top: 10px;
+		margin-left: 10px;
+		justify-self: flex-start;
+	}
 
 	@media (min-width: $mobile) {
 		border-radius: 5px;

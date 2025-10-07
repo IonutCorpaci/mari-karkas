@@ -7,7 +7,7 @@
 					<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
 				</svg>
 			</button>
-			<form class="credit-popup__body">
+			<form class="credit-popup__body" id="calc-form">
 				<div class="credit-popup__title">Расчёт ипотеки</div>
 				<div class="credit-popup__calculator calculator-credit">
 					<div class="calculator-credit__inputs">
@@ -55,8 +55,11 @@
 							class="form-input-item" 
 							id="credit-phone" 
 							placeholder="+7 (___) ___-__-__" 
+							required
 						>
+						<div class="form-error-message form-error-calc"></div>
 						<button class="results-credit__send" type="submit">Оставить заявку</button>
+						<div class="form-calc-succes"></div>
 					</div>
 				</div>
 			</form>

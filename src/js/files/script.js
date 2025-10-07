@@ -27,7 +27,7 @@ inputsMask(creditPhone);
 
 
 
-const PRICE_PER_SQM = 55000;
+const PRICE_PER_SQM = 55000; // 💡 поставь нужную цену за м²
 
 const areaInput = document.getElementById('input-area');
 const areaValue = document.getElementById('area-value');
@@ -36,6 +36,12 @@ const monthsValue = document.getElementById('months-value');
 const totalPriceElement = document.getElementById('total-price');
 const initialPaymentElement = document.getElementById('initial-payment');
 const monthlyPaymentElement = document.getElementById('monthly-payment');
+
+// форма
+const sendFormCalc = document.getElementById('calc-form'); // <form id="calc-form">
+const calcErrMessage = document.querySelector('.form-error-calc'); // <div class="calc-phone-error"></div>
+const calcFormBtn = document.querySelector('.results-credit__send');
+let succeseCalcMessage = document.querySelector('.form-calc-succes');
 
 let areaCalc = parseInt(areaInput.value);
 let monthsCalc = parseInt(monthsInput.value);
@@ -66,6 +72,101 @@ monthsInput.addEventListener('input', function() {
     calculateValues();
 });
 
+// первая отрисовка
+calculateValues();
+
+// обработка формы
+sendFormCalc.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const phone = creditPhone.value.trim();
+    const phoneDigits = phone.replace(/\D/g, '');
+
+    if (phoneDigits.length < 11) {
+        calcErrMessage.textContent = 'Введите корректный номер телефона';
+        creditPhone.classList.add('error');
+        return;
+    } else {
+        calcErrMessage.textContent = '';
+        creditPhone.classList.remove('error');
+    }
+
+    calcFormBtn.textContent = 'Отправка...';
+    calcFormBtn.disabled = true;
+
+    const totalPrice = areaCalc * PRICE_PER_SQM;
+    const initialPayment = totalPrice * 0.2;
+    const monthlyPayment = (totalPrice - initialPayment) / monthsCalc;
+
+    const data = {
+        phone,
+        area: areaCalc,
+        months: monthsCalc,
+        totalPrice,
+        initialPayment,
+        monthlyPayment
+    };
+
+    // формируем сообщение в том же виде, как в других формах
+    let message = `Заявка из калькулятора:\n`;
+    message += `Площадь: ${areaCalc} м²\n`;
+    message += `Срок: ${monthsCalc} мес\n`;
+    message += `Полная стоимость: ${formatPrice(totalPrice)}\n`;
+    message += `Первоначальный взнос: ${formatPrice(initialPayment)}\n`;
+    message += `Ежемесячный платёж: ${formatPrice(monthlyPayment)}\n`;
+    message += `Телефон: ${phone}\n`;
+
+    fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 0, message })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Ошибка сервера: ' + response.status);
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            succeseCalcMessage.innerHTML = 'Спасибо, всё прошло успешно, в скором времени с вами свяжутся.'
+        } else {
+            throw new Error(data.error || 'Неизвестная ошибка');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        calcErrMessage.textContent = 'Ошибка при отправке. Попробуйте позже.';
+        calcFormBtn.disabled = false;
+        calcFormBtn.textContent = 'Отправить заявку';
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,22 +178,26 @@ const quizObj = [
       {
         imageUrl: "img/quiz/quiz-1_barnhaus.webp",
         answer: "Барнхаус",
-        type: "radio"
+        type: "radio",
+        name: 'Тип'
       },
       {
         imageUrl: "img/quiz/quiz-1_afreim.webp",
         answer: "А-фрейм",
-        type: "radio"
+        type: "radio",
+        name: 'Тип'
       },
       {
         imageUrl: "img/quiz/quiz-1_classic.webp",
         answer: "Классику",
-        type: "radio"
+        type: "radio",
+        name: 'Тип'
       },
       {
         imageUrl: "img/quiz/quiz-1_bania.webp",
         answer: "Баню",
-        type: "radio"
+        type: "radio",
+        name: 'Тип'
       }
     ]
   },
@@ -103,22 +208,26 @@ const quizObj = [
       {
         imageUrl: "img/quiz/quiz-2_50.webp",
         answer: "До 50м2",
-        type: "radio"
+        type: "radio",
+        name: 'Площадь'
       },
       {
         imageUrl: "img/quiz/quiz-2_100.webp",
         answer: "50-100 м2",
-        type: "radio"
+        type: "radio",
+        name: 'Площадь'
       },
       {
         imageUrl: "img/quiz/quiz-2_150.webp",
         answer: "100-150 м2",
-        type: "radio"
+        type: "radio",
+        name: 'Площадь'
       },
       {
         imageUrl: "img/quiz/quiz-2_200.webp",
         answer: "Более 150м2",
-        type: "radio"
+        type: "radio",
+        name: 'Площадь'
       }
     ]
   },
@@ -129,22 +238,26 @@ const quizObj = [
       {
         imageUrl: "img/quiz/quiz-3_besedka.webp",
         answer: "Беседка",
-        type: "checkbox"
+        type: "checkbox",
+        name: 'Допы'
       },
       {
         imageUrl: "img/quiz/quiz-3_terrasa.webp",
         answer: "Терраса",
-        type: "checkbox"
+        type: "checkbox",
+        name: 'Допы'
       },
       {
         imageUrl: "img/quiz/quiz-3_sauna.webp",
         answer: "Сауна",
-        type: "checkbox"
+        type: "checkbox",
+        name: 'Допы'
       },
       {
         imageUrl: "img/quiz/quiz-3_not.webp",
         answer: "Не требуется",
-        type: "checkbox"
+        type: "checkbox",
+        name: 'Допы'
       }
     ]
   },
@@ -154,23 +267,28 @@ const quizObj = [
     options: [
       {
         answer: "В этом месяце",
-        type: "radio"
+        type: "radio",
+        name: 'Когда'
       },
       {
         answer: "В течение 3-х месяцев",
-        type: "radio"
+        type: "radio",
+        name: 'Когда'
       },
       {
         answer: "В течение полугода",
-        type: "radio"
+        type: "radio",
+        name: 'Когда'
       },
       {
         answer: "Приступаем к проектированию и сразу строимся",
-        type: "radio"
+        type: "radio",
+        name: 'Когда'
       },
       {
         answer: "Пока не определился",
-        type: "radio"
+        type: "radio",
+        name: 'Когда'
       }
     ]
   },
@@ -180,23 +298,28 @@ const quizObj = [
     options: [
       {
         answer: "500 тыс. руб - 3 млн. руб",
-        type: "radio"
+        type: "radio",
+        name: 'Бюджет'
       },
       {
         answer: "3 млн. руб - 5 млн. руб",
-        type: "radio"
+        type: "radio",
+        name: 'Бюджет'
       },
       {
         answer: "5 млн. руб - 7 млн. руб",
-        type: "radio"
+        type: "radio",
+        name: 'Бюджет'
       },
       {
         answer: "7 млн. руб - 9 млн. руб",
-        type: "radio"
+        type: "radio",
+        name: 'Бюджет'
       },
       {
         answer: "Более 9 млн. руб",
-        type: "radio"
+        type: "radio",
+        name: 'Бюджет'
       }
     ]
   },
@@ -207,22 +330,26 @@ const quizObj = [
       {
         imageUrl: "img/quiz/quiz-6_potolki.webp",
         answer: "Натяжные потолки",
-        type: "radio"
+        type: "radio",
+        name: 'Подарок'
       },
       {
         imageUrl: "img/quiz/quiz-6_okna.webp",
         answer: "Мягкие окна",
-        type: "radio"
+        type: "radio",
+        name: 'Подарок'
       },
       {
         imageUrl: "img/quiz/quiz-6_umniidom.webp",
         answer: "Умный дом",
-        type: "radio"
+        type: "radio",
+        name: 'Подарок'
       },
       {
         imageUrl: "img/quiz/quiz-6_discount.webp",
         answer: "Скидка 1%",
-        type: "radio"
+        type: "radio",
+        name: 'Подарок'
       }
     ]
   },
@@ -237,9 +364,9 @@ const nextBtn = quizApp.querySelector(".quiz__next");
 let currentStep = 0;
 let answers = {};
 
+// ====== РЕНДЕР ВОПРОСОВ ======
 function renderStep() {
   const step = quizObj[currentStep];
-
   questionEl.textContent = step.question;
 
   quizApp.querySelector(".quiz__answers-image")?.remove();
@@ -254,7 +381,7 @@ function renderStep() {
       optionDiv.className = "quiz__answer-image answer-image";
       optionDiv.innerHTML = `
         <label class="answer-image__label">
-          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-image__input">
+          <input type="${opt.type}" name="${opt.name}" value="${opt.answer}" class="answer-image__input">
           <div class="answer-image__item">
             <div class="answer-image__image">
               <img src="${opt.imageUrl}" alt="">
@@ -268,50 +395,49 @@ function renderStep() {
       optionDiv.className = "quiz__answer-text answer-text";
       optionDiv.innerHTML = `
         <label class="answer-text__label">
-          <input type="${opt.type}" name="q${currentStep}" value="${opt.answer}" class="answer-text__input" />
+          <input type="${opt.type}" name="${opt.name}" value="${opt.answer}" class="answer-text__input" />
           <button type="button" class="answer-text__text"><span class="_icon-checked"></span> ${opt.answer}</button>
         </label>
       `;
     }
-
     answersWrapper.appendChild(optionDiv);
   });
 
   questionEl.after(answersWrapper);
 
   const inputs = answersWrapper.querySelectorAll("input");
-  if (answers[`q${currentStep}`]) {
-    if (inputs.length) {
-      if (inputs[0].type === "radio") {
-        inputs.forEach(i => {
-          if (answers[`q${currentStep}`] === i.value) {
-            i.checked = true;
-            i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
-          }
-        });
-      } else if (inputs[0].type === "checkbox") {
-        inputs.forEach(i => {
-          if (Array.isArray(answers[`q${currentStep}`]) && answers[`q${currentStep}`].includes(i.value)) {
-            i.checked = true;
-            i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
-          }
-        });
-      }
+  const fieldName = step.options[0]?.name;
+
+  if (answers[fieldName]) {
+    if (inputs[0].type === "radio") {
+      inputs.forEach(i => {
+        if (answers[fieldName] === i.value) {
+          i.checked = true;
+          i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
+        }
+      });
+    } else if (inputs[0].type === "checkbox") {
+      inputs.forEach(i => {
+        if (answers[fieldName].includes(i.value)) {
+          i.checked = true;
+          i.closest(".quiz__answer-image, .quiz__answer-text")?.classList.add("selected-answer");
+        }
+      });
     }
   }
 
-  if (inputs.length) {
+  if (inputs[0]) {
     if (inputs[0].type === "radio") {
       nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
     } else {
-      nextBtn.disabled = !(answers[`q${currentStep}`] && answers[`q${currentStep}`].length > 0);
+      nextBtn.disabled = !(answers[fieldName] && answers[fieldName].length > 0);
     }
   } else {
     nextBtn.disabled = true;
   }
 
   function updateAfterRadioChange(changedInput) {
-    answers[`q${currentStep}`] = changedInput.value;
+    answers[fieldName] = changedInput.value;
 
     inputs.forEach(i => {
       const parent = i.closest(".quiz__answer-image, .quiz__answer-text");
@@ -322,18 +448,18 @@ function renderStep() {
     nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
   }
 
-function updateAfterCheckboxChange(changedInput) {
-  const parent = changedInput.closest(".quiz__answer-image, .quiz__answer-text");
+  function updateAfterCheckboxChange(changedInput) {
+    const parent = changedInput.closest(".quiz__answer-image, .quiz__answer-text");
 
-  if (changedInput.checked) parent?.classList.add("selected-answer");
-  else parent?.classList.remove("selected-answer");
+    if (changedInput.checked) parent?.classList.add("selected-answer");
+    else parent?.classList.remove("selected-answer");
 
-  const checkedInputs = Array.from(parent.closest(".quiz__answers-text, .quiz__answers-image").querySelectorAll("input[type=checkbox]:checked"));
-  const values = checkedInputs.map(i => i.value);
-  answers[`q${currentStep}`] = values.join(", ");
+    const checkedInputs = Array.from(parent.closest(".quiz__answers-text, .quiz__answers-image").querySelectorAll("input[type=checkbox]:checked"));
+    const values = checkedInputs.map(i => i.value);
+    answers[fieldName] = values.join(", ");
 
-  nextBtn.disabled = values.length === 0;
-}
+    nextBtn.disabled = values.length === 0;
+  }
 
   inputs.forEach(i => {
     i.addEventListener("change", () => {
@@ -346,21 +472,15 @@ function updateAfterCheckboxChange(changedInput) {
   optionDivs.forEach(div => {
     const input = div.querySelector("input");
     div.addEventListener("click", (e) => {
-      if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === "button") {
-        e.preventDefault();
-      }
-
+      if (e.target.tagName.toLowerCase() === "button") e.preventDefault();
       if (!input) return;
 
       if (input.type === "radio") {
         if (!input.checked) {
           input.checked = true;
           input.dispatchEvent(new Event("change", { bubbles: true }));
-        } else {
-          input.checked = true;
         }
       } else if (input.type === "checkbox") {
-
         input.checked = !input.checked;
         input.dispatchEvent(new Event("change", { bubbles: true }));
       }
@@ -371,18 +491,15 @@ function updateAfterCheckboxChange(changedInput) {
   nextBtn.textContent = "Далее";
 }
 
+// ====== ПЕРЕКЛЮЧЕНИЕ ВОПРОСОВ ======
 nextBtn.addEventListener("click", () => {
   if (currentStep < quizObj.length - 1) {
     currentStep++;
-    console.log(answers);
     renderStep();
-  } else if (currentStep === quizObj.length - 1) {
-
+  } else {
     quizApp.style.display = "none";
     document.querySelector(".quiz__manager").style.display = "none";
-
-    const formEl = document.querySelector(".quiz__form.form-quiz");
-    if (formEl) formEl.style.display = "block";
+    document.querySelector(".quiz__form.form-quiz").style.display = "block";
   }
 });
 
@@ -394,6 +511,83 @@ prevBtn.addEventListener("click", () => {
 });
 
 renderStep();
+
+// ====== ОБРАБОТКА ФОРМЫ ======
+const quizForm = document.querySelector(".form-quiz__form");
+if (quizForm) {
+  quizForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const selectedSocial = quizForm.querySelector('input[name="Куда"]:checked');
+    const phoneInput = quizForm.querySelector('#quizFormPhone');
+    const phoneValue = phoneInput.value.replace(/\D/g, '');
+    const formErrMessage = quizForm.querySelector('.form-error-message')
+    const formBtnQuiz = quizForm.querySelector('.form-quiz__btn');
+    const formSuccesMessage = quizForm.querySelector('form-succes-message');
+
+    if (!selectedSocial || !phoneInput.value.trim()) {
+      formErrMessage.innerHTML = 'Пожалуйста, выберите соцсеть и введите номер телефона.'
+      return;
+    }
+
+    if (phoneValue.length < 11) {
+      formErrMessage.innerHTML = 'Введите корректный номер телефона.'
+      return;
+    }
+
+    formBtnQuiz.innerHTML = 'Отправка...'
+
+
+    // записываем ответы в объект
+    answers["Куда"] = selectedSocial.value;
+    answers["Номер"] = phoneInput.value.trim();
+
+    // формируем сообщение
+    let message = "Заявка из квиза:\n";
+    for (let key in answers) {
+      message += `${key}: ${answers[key]}\n`;
+    }
+
+    console.log(message);
+
+    // отправляем запрос
+    try {
+      const response = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 0, message })
+      });
+
+      if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
+
+      const data = await response.json();
+      if (data.success) {
+        formBtnQuiz.innerHTML = `Получить каталог проектов <span>+бонус</span>`;
+        formErrMessage.innerHTML = '';
+        formSuccesMessage.innerHTML = 'Спасибо, всё прошло успешно, скоро с вами свяжутся.'
+      } else {
+        formBtnQuiz.innerHTML = `Получить каталог проектов <span>+бонус</span>`;
+        formErrMessage.innerHTML = 'Произошла ошибка при отправке данных. Попробуйте снова.';
+      }
+    } catch (err) {
+      formBtnQuiz.innerHTML = `Получить каталог проектов <span>+бонус</span>`;
+      formErrMessage.innerHTML = 'Произошла ошибка при отправке данных. Попробуйте снова.';
+      console.error("Ошибка при отправке:", err);
+    }
+  });
+
+  // визуальное выделение выбранной соцсети
+  quizForm.querySelectorAll('.contacts-form__tg, .contacts-form__whatsapp, .contacts-form__max').forEach(label => {
+    const input = label.querySelector('input');
+    label.addEventListener('click', () => {
+      quizForm.querySelectorAll('.contacts-form__tg, .contacts-form__whatsapp, .contacts-form__max').forEach(l => l.classList.remove('selected-social'));
+      label.classList.add('selected-social');
+      input.checked = true;
+    });
+  });
+}
+
+
 
 
 
@@ -488,3 +682,62 @@ function stopVideo() {
 }
 
 
+
+
+const popupFormCall = document.getElementById("popup-phone-form");
+const popupErrorCall = popupFormCall.querySelector(".form-error-message");
+const popupSuccessCall = popupFormCall.querySelector(".form-succes-call");
+const submitBtnCall = popupFormCall.querySelector(".form-popup__form-btn");
+
+popupFormCall.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const phone = phoneInput.value.trim();
+    const phoneDigits = phone.replace(/\D/g, "");
+
+    // Проверка номера
+    if (phoneDigits.length < 11) {
+        popupErrorCall.textContent = "Введите корректный номер телефона";
+        phoneInput.classList.add("error");
+        return;
+    } else {
+        popupErrorCall.textContent = "";
+        phoneInput.classList.remove("error");
+    }
+
+    submitBtnCall.textContent = "Отправка...";
+    submitBtnCall.disabled = true;
+
+    // Формируем сообщение для Telegram
+    const message = `Заявка с попап-формы:\nНомер телефона: ${phone}`;
+
+    fetch("/api/send-telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode: 0, message })
+    })
+        .then((response) => {
+            if (!response.ok) throw new Error("Ошибка сервера: " + response.status);
+            return response.json();
+        })
+        .then((data) => {
+            if (data.success) {
+                popupSuccessCall.textContent = "Спасибо! Мы скоро свяжемся с вами.";
+                popupSuccessCall.style.display = "block";
+
+                // Очистка формы
+                phoneInput.value = "";
+                submitBtnCall.textContent = "Оставить заявку";
+            } else {
+                throw new Error(data.error || "Неизвестная ошибка");
+            }
+        })
+        .catch((error) => {
+            console.error("Ошибка:", error);
+            popupErrorCall.textContent = "Ошибка при отправке. Попробуйте позже.";
+            submitBtnCall.textContent = "Оставить заявку";
+        })
+        .finally(() => {
+            submitBtnCall.disabled = false;
+        });
+});
