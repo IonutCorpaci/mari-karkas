@@ -23,7 +23,7 @@
 					<video autoplay="" muted="" loop="" playsinline="">
 						<source src="img/marikarkasvideo.mp4" type="video/mp4">
 					</video>
-					<div data-gallery>
+					<div class="main-mob-video-gallery" data-gallery>
 						<a 
 						class="main-mob__play-btn"
 						data-lg-size="1280-720"
@@ -145,6 +145,12 @@
 			<div class="quiz">
 				<div class="quiz__title">Ответьте на 5 вопросов и получите каталог каркасных домов и выберите индивидуальный подарок</div>
 				<div class="quiz__container">
+					<button type="button" class="mob-quiz-close">
+						<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
+							<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
+						</svg>
+					</button>
 					<div class="quiz__manager manager-quiz">
 						<div class="manager-quiz__manager">
 							<div class="manager-quiz__image">
@@ -332,23 +338,26 @@
 			</div>
 			<div class="portfolio">
 				<div class="portfolio__container">
-					<div class="portfolio__item">
-						<img src="img/portfolio/portfolio-1.jpg" alt="Дом">
-					</div>
-					<div class="portfolio__item">
-						<img src="img/portfolio/portfolio-2.jpg" alt="Дом">
-					</div>
-					<div class="portfolio__item">
-						<img src="img/portfolio/portfolio-3.jpg" alt="Дом">
-					</div>
-					<div class="portfolio__item">
-						<img src="img/portfolio/portfolio-4.jpg" alt="Дом">
-					</div>
-					<div class="portfolio__item">
-						<img src="img/portfolio/portfolio-5.jpg" alt="Дом">
-					</div>
-					<div class="portfolio__item">
-						<img src="img/portfolio/portfolio-6.jpg" alt="Дом">
+					<h2 class="portfolio__title">Построенные обьекты:</h2>
+					<div class="portfolio__items">
+						<div class="portfolio__item">
+							<img src="img/portfolio/portfolio-1.jpg" alt="Дом">
+						</div>
+						<div class="portfolio__item">
+							<img src="img/portfolio/portfolio-2.jpg" alt="Дом">
+						</div>
+						<div class="portfolio__item">
+							<img src="img/portfolio/portfolio-3.jpg" alt="Дом">
+						</div>
+						<div class="portfolio__item">
+							<img src="img/portfolio/portfolio-4.jpg" alt="Дом">
+						</div>
+						<div class="portfolio__item">
+							<img src="img/portfolio/portfolio-5.jpg" alt="Дом">
+						</div>
+						<div class="portfolio__item">
+							<img src="img/portfolio/portfolio-6.jpg" alt="Дом">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -526,6 +535,7 @@
 								</div>
 							</div>
 						</div>
+						<div class="reviews__pagination swiper-pagination"></div>
 
 						<button type="button" class="reviews__prev-btn"><span class="_icon-arrow-right"></span></button>
 						<button type="button" class="reviews__next-btn"><span class="_icon-arrow-right"></span></button>

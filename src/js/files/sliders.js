@@ -116,7 +116,7 @@ function initSliders() {
 		new Swiper('.reviews__slider', { // Вказуємо склас потрібного слайдера
 			// Підключаємо модулі слайдера
 			// для конкретного випадку
-			modules: [Navigation],
+			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			observeSlideChildren: true,
@@ -142,12 +142,12 @@ function initSliders() {
 			*/
 
 			// Пагінація
-			/*
+			
 			pagination: {
-				el: '.swiper-pagination',
+				el: '.reviews__pagination',
 				clickable: true,
 			},
-			*/
+			
 
 			// Скроллбар
 			/*
@@ -162,28 +162,23 @@ function initSliders() {
 				prevEl: '.reviews__prev-btn',
 				nextEl: '.reviews__next-btn',
 			},
-			/*
+			
 			// Брейкпоінти
 			breakpoints: {
-				640: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
+				340: {
+					spaceBetween: 10,
+					
 				},
 				768: {
-					slidesPerView: 2,
 					spaceBetween: 20,
 				},
+
 				992: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1268: {
-					slidesPerView: 4,
 					spaceBetween: 30,
-				},
+				}
+				
 			},
-			*/
+			
 			// Події
 			on: {
 

@@ -650,6 +650,9 @@
     // .portfolio__container
 
     &__container {
+    }
+
+    &__items {
         display: grid;
         justify-content: center;
         grid-template-columns: repeat(2, minmax(0, 320px));
@@ -657,6 +660,17 @@
 
         @media (min-width: $mobile) {
             grid-template-columns: repeat(3, minmax(0, 380px));
+        }
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #404040;
+        margin-bottom: 20px;
+
+        @media (min-width: $mobile) {
+            font-size: 37px;
         }
     }
 
@@ -715,12 +729,43 @@
         height: 730px;
 
         @media (min-width: $mobileSmall) {
-            height: 850px;
+            height: 830px;
         }
 
         @media (min-width: $mobile) {
             padding: 30px 40px;
             height: 880px;
+        }
+
+        &.mob-quiz-active {
+            @media (max-width: $mobile) {
+                padding-top: 60px;
+                position: fixed;
+                top: 0;
+                background-color: #fff;
+                height: 100vh;
+                width: 100vw;
+                z-index: 1000;
+                .mob-quiz-close {
+                    display: block;
+                    position: absolute;
+                    z-index: 1000;
+                    top: 20px;
+                    right: 20px;
+                }
+                .quiz__app {
+                    position: relative;
+                    .quiz__btns {
+                        position: absolute;
+                        bottom: 20px;
+                        right: 20px;
+                    }
+                }
+            }
+        }
+
+        .mob-quiz-close {
+            display: none;
         }
     }
 
@@ -751,6 +796,7 @@
 
     &__app {
         width: 100%;
+        position: relative;
     }
 
     // .quiz__bar
@@ -796,11 +842,11 @@
     // .quiz__question
 
     &__question {
-        font-size: 24px;
+        font-size: 23px;
         text-align: center;
         color: #282828;
         margin: 20px 0;
-        @media (min-width: $mobile) {
+        @media (min-width: $pc) {
             font-size: 27px;
         }
     }
@@ -834,6 +880,9 @@
         justify-content: flex-end;
         margin-top: 30px;
         gap: 10px;
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
     }
 
     &__prev {
@@ -1101,8 +1150,12 @@
         border-radius: 12px;
         transition: 0.3s;
         position: relative;
-        height: 200px;
+        height: 150px;
         @media (min-width: $mobileSmall) {
+            height: 200px;
+        }
+
+        @media (min-width: $mobile) {
             height: 250px;
         }
 
@@ -1671,6 +1724,9 @@
     // .reviews__container
 
     &__container {
+        @media (max-width: $mobile) {
+            padding-right: 0;
+        }
     }
 
     &__title {
@@ -1836,6 +1892,30 @@
         left: 5px;
         transform: translateY(-50%) rotate(-180deg);
         // z-index: 1;
+    }
+
+    &__pagination {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        @media (min-width: $mobile) {
+            display: none;
+        }
+        .swiper-pagination-bullet {
+            cursor: pointer;
+            width: 23px;
+            height: 2px;
+            display: block;
+            background-color: #fabc48c8;
+            transition: width 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #fabc48;
+            width: 44px;
+        }
     }
 }
 

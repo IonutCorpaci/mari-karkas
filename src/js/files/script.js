@@ -4,28 +4,64 @@ import { isMobile } from "./functions.js";
 import { flsModules } from "./modules.js";
 
 
+function phoneMask(input) {
+    input.addEventListener('input', function(e) {
+        let value = input.value.replace(/\D/g, ''); // оставляем только цифры
+
+        // всегда начинаем с 7
+        if (!value.startsWith('7')) value = '7' + value;
+
+        // первая цифра после кода
+        if (value.length > 1) {
+            const allowed = ['0','1','3','4','5','6','7','9'];
+            if (!allowed.includes(value[1])) {
+                value = value[0]; // удаляем запрещённую цифру
+            }
+        }
+
+        // форматируем с базой +7 (
+        let formatted = '+7 (';
+        if (value.length > 1) formatted += value.substring(1,4);
+        if (value.length > 4) formatted += ') ' + value.substring(4,7);
+        if (value.length > 7) formatted += '-' + value.substring(7,9);
+        if (value.length > 9) formatted += '-' + value.substring(9,11);
+
+        input.value = formatted;
+    });
+
+    // блокировка клавиш на запрещённых позициях
+    input.addEventListener('keydown', function(e) {
+        const pos = input.selectionStart;
+
+        // запрещаем backspace/удаление +7 (
+        if ((pos <= 3) && (e.key === 'Backspace' || e.key === 'Delete')) {
+            e.preventDefault();
+        }
+
+        // запрещаем ввод 8 как первой цифры после +7
+        if (pos === 4 && e.key >= '0' && e.key <= '9') {
+            const allowed = ['0','1','3','4','5','6','7','9'];
+            if (!allowed.includes(e.key)) e.preventDefault();
+        }
+
+        // запрещаем ввод любых букв/символов
+        if (!((e.key >= '0' && e.key <= '9') || ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(e.key))) {
+            e.preventDefault();
+        }
+    });
+}
+
+// Применяем маску к нужным инпутам
 const quizInput = document.getElementById("quizFormPhone");
 const phoneInput = document.getElementById("popupFormPhone");
 const creditPhone = document.getElementById("credit-phone");
 
-function inputsMask(elem) {
-  elem.addEventListener('input', function(e) {
-      let value = e.target.value.replace(/\D/g, '');
-      if (value.length > 0 && value[0] !== '7') value = '7' + value;
-      let formattedValue = value.length > 0 ? '+' + value[0] : '';
-      if (value.length > 1) formattedValue += ' (' + value.substring(1, 4);
-      if (value.length > 4) formattedValue += ') ' + value.substring(4, 7);
-      if (value.length > 7) formattedValue += '-' + value.substring(7, 9);
-      if (value.length > 9) formattedValue += '-' + value.substring(9, 11);
-      e.target.value = formattedValue;
-  });
-}
-
-inputsMask(phoneInput);
-inputsMask(quizInput);
-inputsMask(creditPhone);
+phoneMask(quizInput);
+phoneMask(phoneInput);
+phoneMask(creditPhone);
 
 
+// -------------------- Calculator credit --------------------
 
 const PRICE_PER_SQM = 55000; // 💡 поставь нужную цену за м²
 
@@ -107,19 +143,10 @@ sendFormCalc.addEventListener('submit', function(e) {
         monthlyPayment
     };
 
-    // формируем сообщение в том же виде, как в других формах
-    let message = `Заявка из калькулятора:\n`;
-    message += `Площадь: ${areaCalc} м²\n`;
-    message += `Срок: ${monthsCalc} мес\n`;
-    message += `Полная стоимость: ${formatPrice(totalPrice)}\n`;
-    message += `Первоначальный взнос: ${formatPrice(initialPayment)}\n`;
-    message += `Ежемесячный платёж: ${formatPrice(monthlyPayment)}\n`;
-    message += `Телефон: ${phone}\n`;
-
     fetch('/api/send-telegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 0, message })
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (!response.ok) throw new Error('Ошибка сервера: ' + response.status);
@@ -143,32 +170,7 @@ sendFormCalc.addEventListener('submit', function(e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// -------------------- QUIZ APP --------------------
 
 const quizObj = [
   {
@@ -355,14 +357,19 @@ const quizObj = [
   },
 ]
 
-
 const quizApp = document.querySelector(".quiz__app");
 const questionEl = quizApp.querySelector(".quiz__question");
 const prevBtn = quizApp.querySelector(".quiz__prev");
 const nextBtn = quizApp.querySelector(".quiz__next");
+const quizContainer = document.querySelector(".quiz__container");
+const mobQuizClose = document.querySelector(".mob-quiz-close");
+const quizBarSuccess = document.querySelector(".quiz__bar-success");
+const quizBarText = document.querySelector(".quiz__bar-text span");
 
 let currentStep = 0;
 let answers = {};
+let mobQuizActivated = false;
+let progressPercent = 0;
 
 // ====== РЕНДЕР ВОПРОСОВ ======
 function renderStep() {
@@ -408,6 +415,7 @@ function renderStep() {
   const inputs = answersWrapper.querySelectorAll("input");
   const fieldName = step.options[0]?.name;
 
+  // Восстановление выбранных значений
   if (answers[fieldName]) {
     if (inputs[0].type === "radio") {
       inputs.forEach(i => {
@@ -446,6 +454,15 @@ function renderStep() {
     });
 
     nextBtn.disabled = !Array.from(inputs).some(i => i.checked);
+
+    if (!mobQuizActivated) {
+      quizContainer.classList.add("mob-quiz-active");
+      if (window.innerWidth <= 768) document.documentElement.classList.add("lock");
+      mobQuizActivated = true;
+    }
+
+    // Авто-переход с прогрессом
+    setTimeout(() => goNextStep(), 300);
   }
 
   function updateAfterCheckboxChange(changedInput) {
@@ -459,6 +476,12 @@ function renderStep() {
     answers[fieldName] = values.join(", ");
 
     nextBtn.disabled = values.length === 0;
+
+    if (!mobQuizActivated && values.length > 0) {
+      quizContainer.classList.add("mob-quiz-active");
+      if (window.innerWidth <= 768) document.documentElement.classList.add("lock");
+      mobQuizActivated = true;
+    }
   }
 
   inputs.forEach(i => {
@@ -491,8 +514,16 @@ function renderStep() {
   nextBtn.textContent = "Далее";
 }
 
-// ====== ПЕРЕКЛЮЧЕНИЕ ВОПРОСОВ ======
-nextBtn.addEventListener("click", () => {
+// ====== ПРОГРЕСС ======
+function goNextStep() {
+  if (progressPercent < 100) {
+    progressPercent += 20;
+    progressPercent = Math.min(progressPercent, 100);
+  }
+
+  quizBarSuccess.style.width = `${progressPercent}%`;
+  quizBarText.textContent = `пройден на ${progressPercent}%`;
+
   if (currentStep < quizObj.length - 1) {
     currentStep++;
     renderStep();
@@ -501,18 +532,50 @@ nextBtn.addEventListener("click", () => {
     document.querySelector(".quiz__manager").style.display = "none";
     document.querySelector(".quiz__form.form-quiz").style.display = "block";
   }
-});
+}
 
-prevBtn.addEventListener("click", () => {
+function goPrevStep() {
+  if (progressPercent > 0) {
+    progressPercent -= 20;
+    progressPercent = Math.max(progressPercent, 0);
+  }
+  quizBarSuccess.style.width = `${progressPercent}%`;
+  quizBarText.textContent = `пройден на ${progressPercent}%`;
+
   if (currentStep > 0) {
     currentStep--;
     renderStep();
   }
+}
+
+// ====== КНОПКИ ======
+nextBtn.addEventListener("click", goNextStep);
+prevBtn.addEventListener("click", goPrevStep);
+
+// ====== ЗАКРЫТИЕ МОБИЛЬНОГО ПОПАПА ======
+mobQuizClose.addEventListener("click", () => {
+  quizContainer.classList.remove("mob-quiz-active");
+  document.documentElement.classList.remove("lock");
+
+  // Сброс
+  currentStep = 0;
+  progressPercent = 0;
+  quizBarSuccess.style.width = "0%";
+  quizBarText.textContent = `пройден на 0%`;
+  answers = {};
+  mobQuizActivated = false;
+  renderStep();
 });
 
 renderStep();
 
-// ====== ОБРАБОТКА ФОРМЫ ======
+
+
+
+
+
+
+// ====== ОБРАБОТКА ФОРМЫ КВИЗА ======
 const quizForm = document.querySelector(".form-quiz__form");
 if (quizForm) {
   quizForm.addEventListener("submit", async (e) => {
@@ -590,6 +653,7 @@ if (quizForm) {
 
 
 
+// -------------------- Reels --------------------
 
 const reelsObj = [
   { url: 'img/reels/reels-1.mp4', name: 'Классический каркасный дом'},
@@ -682,7 +746,7 @@ function stopVideo() {
 }
 
 
-
+// -------------------- Phone call popup --------------------
 
 const popupFormCall = document.getElementById("popup-phone-form");
 const popupErrorCall = popupFormCall.querySelector(".form-error-message");

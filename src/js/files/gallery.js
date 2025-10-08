@@ -42,16 +42,22 @@ const galleries = document.querySelectorAll('[data-gallery]');
 if (galleries.length) {
 	let galleyItems = [];
 	galleries.forEach(gallery => {
+		// проверяем, есть ли у галереи нужный класс
+		const isMainVideoGallery = gallery.classList.contains('main-mob-video-gallery');
+
 		galleyItems.push({
 			gallery,
 			galleryClass: lightGallery(gallery, {
 				plugins: [lgVideo],
 				licenseKey: '7EC452A9-0CFD441C-BD984C7C-17C8456E',
 				speed: 500,
+				download: false,
+				// 👇 применяем только для конкретной галереи
+				counter: !isMainVideoGallery,
+				share: !isMainVideoGallery,
 			})
-		})
+		});
 	});
-	// Додаємо в об'єкт модулів
 	flsModules.gallery = galleyItems;
 }
 
