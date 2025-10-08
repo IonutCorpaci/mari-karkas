@@ -14,7 +14,7 @@
 	<!-- Ускорение загрузки шрифтов -->
 	<!-- <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&_v=20251008141718" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&_v=20251008181346" rel="stylesheet"> -->
 	<!-- Дефолтные стили -->
 	<style>
 		[class*=__container] {
@@ -66,7 +66,7 @@
 	<style>
 	</style>
 
-	<link rel="preload" href="css/style.min.css?_v=20251008141718" as="style" onload="this.rel='stylesheet'">
+	<link rel="preload" href="css/style.min.css?_v=20251008181346" as="style" onload="this.rel='stylesheet'">
 
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -200,40 +200,39 @@
 
 					<div class="we-build__slider swiper">
 
-						<div class="we-build__wrapper swiper-wrapper" data-gallery>
-
-							<a href="img/we-build/we-build-1.webp" class="we-build__slide swiper-slide">
+						<div class="we-build__wrapper swiper-wrapper">
+							<div class="we-build__slide swiper-slide" data-we-build="classic" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-1.webp" alt="Классика">
-								<span class="we-build__image-text">Классика</span>
-							</a>
-							<a href="img/we-build/we-build-2.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Классика <span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="a-freim" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-2.webp" alt="А-фрейм">
-								<span class="we-build__image-text">А-фрейм</span>
-							</a>
-							<a href="img/we-build/we-build-3.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">А-фрейм<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="barnhaus" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-3.webp" alt="Барнхаус">
-								<span class="we-build__image-text">Барнхаус</span>
-							</a>
-							<a href="img/we-build/we-build-4.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Барнхаус<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="bania" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-4.webp" alt="Баня">
-								<span class="we-build__image-text">Баня</span>
-							</a>
-							<a href="img/we-build/we-build-1.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Баня<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="classic" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-1.webp" alt="Классика">
-								<span class="we-build__image-text">Классика</span>
-							</a>
-							<a href="img/we-build/we-build-2.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Классика <span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="a-freim" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-2.webp" alt="А-фрейм">
-								<span class="we-build__image-text">А-фрейм</span>
-							</a>
-							<a href="img/we-build/we-build-3.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">А-фрейм<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="barnhaus" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-3.webp" alt="Барнхаус">
-								<span class="we-build__image-text">Барнхаус</span>
-							</a>
-							<a href="img/we-build/we-build-4.webp" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Барнхаус<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="bania" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-4.webp" alt="Баня">
-								<span class="we-build__image-text">Баня</span>
-							</a>
+								<span class="we-build__image-text">Баня<span class="_icon-arrow-right"></span></span>
+							</div>
 						</div>
 
 						<button type="button" class="we-build__prev"><span class="_icon-arrow-right"></span></button>
@@ -413,6 +412,7 @@
 									Получить каталог проектов <span>+бонус</span>
 									<span class="btn__load" style="display:none;">Отправка...</span>
 								</button>
+								<div class="form-succes-message"></div>
 								<div class="form-quiz__agreement">
 									<input type="checkbox" name="agreement" checked="" required="">
 									Ознакомлен с <a href="#">политикой конфиденциальности.</a>
@@ -420,7 +420,6 @@
 								<div class="form-quiz__arrow-image">
 									<img src="img/quiz/form-quiz-arrow.webp" alt="arrow">
 								</div>
-								<div class="form-succes-message"></div>
 							</form>
 							<div class="form-quiz__image">
 								<img src="img/quiz/form-quiz-image.webp" alt="">
@@ -743,7 +742,11 @@
 					</svg>
 				</button>
 				<form class="credit-popup__body" id="calc-form">
+					<div class="credit-popup__title">Расчёт ипотеки <span class="credit-popup__banks"><img src="img/credit/sberbank-round.webp" alt=""> <img src="img/credit/vtb.webp" alt=""></span></div>
+					<!-- <div class="credit-popup__top">
 					<div class="credit-popup__title">Расчёт ипотеки</div>
+					<div class="credit-popup__banks"><img src="img/credit/sberbank-round.webp" alt=""> <img src="img/credit/vtb.webp" alt=""></div>
+				</div> -->
 					<div class="credit-popup__calculator calculator-credit">
 						<div class="calculator-credit__inputs">
 							<div class="calculator-credit__input-group">
@@ -818,7 +821,150 @@
 		</div>
 	</div>
 
-	<script src="js/app.min.js?_v=20251008141718" defer></script>
+	<div id="we-build-popup" aria-hidden="true" class="popup we-build-popup">
+		<div class="popup__wrapper">
+			<div class="we-build-popup__content popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
+						<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
+					</svg>
+				</button>
+				<div class="we-build-popup__body" we-build-item="classic">
+					<div class="we-build-popup__main-image">
+						<img src="img/we-build/klassika/klassika-item-8.webp" alt="">
+					</div>
+					<div class="we-build-popup__title">Классика</div>
+					<div class="we-build-popup__items" data-gallery>
+						<a href="img/we-build/klassika/klassika-item-1.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-1_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/klassika/klassika-item-2.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-2_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/klassika/klassika-item-3.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-3_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/klassika/klassika-item-4.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-4_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/klassika/klassika-item-5.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-5_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/klassika/klassika-item-6.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-6_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/klassika/klassika-item-7.webp" class="we-build-popup__image">
+							<img src="img/we-build/klassika/klassika-item-7_preview.webp" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="we-build-popup__body" we-build-item="a-freim">
+					<div class="we-build-popup__main-image">
+						<img src="img/we-build/a-freim/a-freim-item-4.webp" alt="">
+					</div>
+					<div class="we-build-popup__title">А-фрейм</div>
+					<div class="we-build-popup__items" data-gallery="">
+						<a href="img/we-build/a-freim/a-freim-item-1.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-1_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-2.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-2_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-3.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-3_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-4.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-4_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-5.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-5_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-6.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-6_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-7.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-7_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-8.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-8_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-9.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-9_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/a-freim/a-freim-item-10.webp" class="we-build-popup__image">
+							<img src="img/we-build/a-freim/a-freim-item-10_preview.webp" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="we-build-popup__body" we-build-item="barnhaus">
+					<div class="we-build-popup__main-image">
+						<img src="img/we-build/we-build-3.webp" alt="">
+					</div>
+					<div class="we-build-popup__title">Барнхаус</div>
+					<div class="we-build-popup__items" data-gallery="">
+						<a href="img/we-build/barnhaus/barnhaus-item-1.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-1_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-2.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-2_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-3.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-3_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-4.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-4_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-5.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-5_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-6.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-6_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-7.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-7_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-8.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-8_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-9.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-9_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/barnhaus/barnhaus-item-10.webp" class="we-build-popup__image">
+							<img src="img/we-build/barnhaus/barnhaus-item-10_preview.webp" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="we-build-popup__body" we-build-item="bania">
+					<div class="we-build-popup__main-image">
+						<img src="img//we-build/bania/bania-item-5.JPG" alt="">
+					</div>
+					<div class="we-build-popup__title">Баня</div>
+					<div class="we-build-popup__items" data-gallery="">
+						<a href="img/we-build/bania/bania-item-1.JPG" class="we-build-popup__image">
+							<img src="img/we-build/bania/bania-item-1_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/bania/bania-item-2.JPG" class="we-build-popup__image">
+							<img src="img/we-build/bania/bania-item-2_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/bania/bania-item-3.JPG" class="we-build-popup__image">
+							<img src="img/we-build/bania/bania-item-3_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/bania/bania-item-4.JPG" class="we-build-popup__image">
+							<img src="img/we-build/bania/bania-item-4_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/bania/bania-item-5.JPG" class="we-build-popup__image">
+							<img src="img/we-build/bania/bania-item-5_preview.webp" alt="">
+						</a>
+						<a href="img/we-build/bania/bania-item-6.JPG" class="we-build-popup__image">
+							<img src="img/we-build/bania/bania-item-6_preview.webp" alt="">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20251008181346" defer></script>
 </body>
 
 </html>
