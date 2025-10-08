@@ -101,40 +101,39 @@
 					
 					<div class="we-build__slider swiper">
 
-						<div class="we-build__wrapper swiper-wrapper" data-gallery>
-
-							<a href="img/we-build/we-build-1.png" class="we-build__slide swiper-slide">
+						<div class="we-build__wrapper swiper-wrapper">
+							<div class="we-build__slide swiper-slide" data-we-build="classic" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-1.png" alt="Классика">
-								<span class="we-build__image-text">Классика</span>
-							</a>
-							<a href="img/we-build/we-build-2.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Классика <span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="a-freim" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-2.png" alt="А-фрейм">
-								<span class="we-build__image-text">А-фрейм</span>
-							</a>
-							<a href="img/we-build/we-build-3.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">А-фрейм<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="barnhaus" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-3.png" alt="Барнхаус">
-								<span class="we-build__image-text">Барнхаус</span>
-							</a>
-							<a href="img/we-build/we-build-4.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Барнхаус<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="bania" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-4.png" alt="Баня">
-								<span class="we-build__image-text">Баня</span>
-							</a>
-							<a href="img/we-build/we-build-1.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Баня<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="classic" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-1.png" alt="Классика">
-								<span class="we-build__image-text">Классика</span>
-							</a>
-							<a href="img/we-build/we-build-2.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Классика <span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="a-freim" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-2.png" alt="А-фрейм">
-								<span class="we-build__image-text">А-фрейм</span>
-							</a>
-							<a href="img/we-build/we-build-3.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">А-фрейм<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="barnhaus" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-3.png" alt="Барнхаус">
-								<span class="we-build__image-text">Барнхаус</span>
-							</a>
-							<a href="img/we-build/we-build-4.png" class="we-build__slide swiper-slide">
+								<span class="we-build__image-text">Барнхаус<span class="_icon-arrow-right"></span></span>
+							</div>
+							<div class="we-build__slide swiper-slide" data-we-build="bania" data-popup="#we-build-popup">
 								<img src="img/we-build/we-build-4.png" alt="Баня">
-								<span class="we-build__image-text">Баня</span>
-							</a>
+								<span class="we-build__image-text">Баня<span class="_icon-arrow-right"></span></span>
+							</div>
 						</div>
 
 						<button type="button" class="we-build__prev"><span class="_icon-arrow-right"></span></button>
@@ -320,6 +319,7 @@
 									Получить каталог проектов <span>+бонус</span>
 									<span class="btn__load" style="display:none;">Отправка...</span>
 								</button>
+								<div class="form-succes-message"></div>
 								<div class="form-quiz__agreement">
 									<input type="checkbox" name="agreement" checked="" required="">
 									Ознакомлен с <a href="#">политикой конфиденциальности.</a>
@@ -327,7 +327,6 @@
 								<div class="form-quiz__arrow-image">
 									<img src="img/quiz/form-quiz-arrow.png" alt="arrow">
 								</div>
-								<div class="form-succes-message"></div>
 							</form>
 							<div class="form-quiz__image">
 								<img src="img/quiz/form-quiz-image.webp" alt="">
@@ -586,6 +585,7 @@
 	@@include('html/_popup-call.htm',{})
 	@@include('html/_popup-credit.htm',{})
 	@@include('html/_reels-popup.htm',{})
+	@@include('html/_we-build-popup.htm',{})
 	@@include('html/_js.htm',{})
 </body>
 

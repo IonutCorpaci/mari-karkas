@@ -55,6 +55,9 @@ if (galleries.length) {
 				// 👇 применяем только для конкретной галереи
 				counter: !isMainVideoGallery,
 				share: !isMainVideoGallery,
+				mobileSettings: {
+					showCloseIcon: true,
+				},
 			})
 		});
 	});

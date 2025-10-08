@@ -805,3 +805,29 @@ popupFormCall.addEventListener("submit", function (e) {
             submitBtnCall.disabled = false;
         });
 });
+
+
+
+
+const triggersBuild = document.querySelectorAll('[data-we-build]');
+const bodiesBuild = document.querySelectorAll('.we-build-popup__body');
+
+triggersBuild.forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const target = trigger.dataset.weBuild;
+
+    // скрываем все
+    bodiesBuild.forEach(body => {
+      body.style.display = 'none';
+    });
+
+    // показываем нужный
+    const activeBody = document.querySelector(`[we-build-item="${target}"]`);
+    if (activeBody) {
+      activeBody.style.display = 'block';
+    }
+
+    // здесь можешь вызвать свою функцию открытия модалки
+    // openModal();  // пример, если тебе нужно
+  });
+});

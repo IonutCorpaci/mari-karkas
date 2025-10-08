@@ -5784,7 +5784,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         speed: 500,
                         download: false,
                         counter: !isMainVideoGallery,
-                        share: !isMainVideoGallery
+                        share: !isMainVideoGallery,
+                        mobileSettings: {
+                            showCloseIcon: true
+                        }
                     })
                 });
             }));
@@ -6365,6 +6368,18 @@ PERFORMANCE OF THIS SOFTWARE.
                 submitBtnCall.textContent = "Оставить заявку";
             })).finally((() => {
                 submitBtnCall.disabled = false;
+            }));
+        }));
+        const triggersBuild = document.querySelectorAll("[data-we-build]");
+        const bodiesBuild = document.querySelectorAll(".we-build-popup__body");
+        triggersBuild.forEach((trigger => {
+            trigger.addEventListener("click", (() => {
+                const target = trigger.dataset.weBuild;
+                bodiesBuild.forEach((body => {
+                    body.style.display = "none";
+                }));
+                const activeBody = document.querySelector(`[we-build-item="${target}"]`);
+                if (activeBody) activeBody.style.display = "block";
             }));
         }));
         window["FLS"] = false;
