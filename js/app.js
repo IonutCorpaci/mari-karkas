@@ -359,7 +359,7 @@
                         return;
                     }
                     const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
-                    if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
+                    if (buttonClose) {
                         e.preventDefault();
                         this.close();
                         return;
