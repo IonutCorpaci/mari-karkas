@@ -159,16 +159,16 @@ body::after {
 		}
 	}
 
-	// &__top {
-	// 	display: flex;
-	// 	justify-content: space-between;
-	// }
+	&__top {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
 
 	&__title {
 		font-size: 25px;
 		font-weight: 700;
 		color: #6c7a6e;
-		margin: 0px auto;
 		width: fit-content;
 		position: relative;
 		display: flex;

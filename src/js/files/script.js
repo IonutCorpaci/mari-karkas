@@ -154,6 +154,7 @@ sendFormCalc.addEventListener('submit', function(e) {
     })
     .then(data => {
         if (data.success) {
+          calcFormBtn.textContent = 'Оставить заявку';
             succeseCalcMessage.innerHTML = 'Спасибо, всё прошло успешно, в скором времени с вами свяжутся.'
         } else {
             throw new Error(data.error || 'Неизвестная ошибка');
@@ -586,7 +587,7 @@ if (quizForm) {
     const phoneValue = phoneInput.value.replace(/\D/g, '');
     const formErrMessage = quizForm.querySelector('.form-error-message')
     const formBtnQuiz = quizForm.querySelector('.form-quiz__btn');
-    const formSuccesMessage = quizForm.querySelector('form-succes-message');
+    const formSuccesMessage = quizForm.querySelector('.form-succes-message');
 
     if (!selectedSocial || !phoneInput.value.trim()) {
       formErrMessage.innerHTML = 'Пожалуйста, выберите соцсеть и введите номер телефона.'

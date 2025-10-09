@@ -453,6 +453,9 @@ html {
   -ms-scroll-chaining: none;
   overscroll-behavior: none
 }
+button {
+  outline: 0
+}
 .wrapper {
   min-height: 100%;
   display: flex;
@@ -607,11 +610,15 @@ body::after {
   width: 30px;
   height: 30px
 }
+.credit-popup__top {
+  display: flex;
+  justify-content: center;
+  gap: 20px
+}
 .credit-popup__title {
   font-size: 25px;
   font-weight: 700;
   color: #6c7a6e;
-  margin: 0 auto;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -3612,9 +3619,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     position: relative
   }
   .quiz__container.mob-quiz-active .quiz__app .quiz__btns {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
-    right: 20px
+    right: 20px;
+    padding-bottom: env(safe-area-inset-bottom)
   }
   .we-build__container {
     padding-right: 0
