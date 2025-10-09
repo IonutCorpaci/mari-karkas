@@ -5895,7 +5895,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (!response.ok) throw new Error("Ошибка сервера: " + response.status);
                 return response.json();
             })).then((data => {
-                if (data.success) succeseCalcMessage.innerHTML = "Спасибо, всё прошло успешно, в скором времени с вами свяжутся."; else throw new Error(data.error || "Неизвестная ошибка");
+                if (data.success) {
+                    calcFormBtn.textContent = "Оставить заявку";
+                    succeseCalcMessage.innerHTML = "Спасибо, всё прошло успешно, в скором времени с вами свяжутся.";
+                } else throw new Error(data.error || "Неизвестная ошибка");
             })).catch((error => {
                 console.error("Ошибка:", error);
                 calcErrMessage.textContent = "Ошибка при отправке. Попробуйте позже.";
@@ -6200,7 +6203,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 const phoneValue = phoneInput.value.replace(/\D/g, "");
                 const formErrMessage = quizForm.querySelector(".form-error-message");
                 const formBtnQuiz = quizForm.querySelector(".form-quiz__btn");
-                const formSuccesMessage = quizForm.querySelector("form-succes-message");
+                const formSuccesMessage = quizForm.querySelector(".form-succes-message");
                 if (!selectedSocial || !phoneInput.value.trim()) {
                     formErrMessage.innerHTML = "Пожалуйста, выберите соцсеть и введите номер телефона.";
                     return;
